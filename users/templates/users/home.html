@@ -1,9 +1,9 @@
 {% extends "users/base.html" %}
 {% block title %} Home Page {% endblock title%}
 {% block content %}
-    <div class="jumbotron">
+    <div class="jumbotron" style="background-color: #FFF">
         <h1 class="display-4">Welcome, {{user.first_name.title|default:'Guest'}}</h1>
-        <p class="lead">
+        <p class="lead" style="background-color: #F2F2F2; padding: 10px; border-radius: 8px 8px">
             add Graphs here
         </p>
     </div>

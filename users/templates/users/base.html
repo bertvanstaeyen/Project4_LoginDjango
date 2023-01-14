@@ -14,10 +14,10 @@
     <title>{% block title %} {% endblock %} </title>
 </head>
 <body>
-  <div class="container p-3 my-3">
+  <div >
     <div class="row">
       <div class="col-md-12">
-        <nav class="navbar navbar-expand-md navbar-light " style="background-color: #f0f5f5">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark  " >
           <a href="/" class="navbar-brand">Home</a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
@@ -34,6 +34,7 @@
                 </div>
             </div>
         </nav>
+        <div class="container">
         <!--Any flash messages pop up in any page because this is the base template-->
         {% if messages %}
           <div class="alert alert-dismissible" role="alert">
@@ -46,6 +47,8 @@
           </div>
         {% endif %}
         {% block content %}{% endblock %}
+        </div>
+
       </div>
     </div>
   </div>
