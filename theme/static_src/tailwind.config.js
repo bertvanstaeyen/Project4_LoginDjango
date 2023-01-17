@@ -43,7 +43,37 @@ module.exports = {
 
     ],
     theme: {
-        extend: {},
+        extend: {
+            colors : {
+                transparent: 'transparent',
+                current: 'currentColor',
+                'primary': {
+                    'light': '38B0B5',
+                    'normal': '#1B7F83',
+                    'dark': '#10585B',
+                },
+                'darker': {
+                    800: '#2D2D2D',
+                    900: '#414141',
+                },
+                'success': {
+                    200: '#00803D',
+                    100: '#DCFCE7',
+                },
+                'error': {
+                    200: '#973333',
+                    100: '#FFB4B4',
+                },
+                'warning': {
+                    200: '#755F30',
+                    100: '#F5D480',
+                },
+            },
+            fontFamily: {
+                inter: ['Inter', 'sans-serif'],
+                pro: ['Source Sans Pro', 'serif'],
+            }
+        },
     },
     plugins: [
         /**

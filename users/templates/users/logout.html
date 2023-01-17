@@ -1,13 +1,46 @@
 {% extends "users/base.html" %}
 {% block title %}Logout{% endblock title %}
 {% block content %}
-    <div class="card" style="width: 18rem; margin:auto; margin-top:100px; border-radius: 8px">
-        <div class="card-body">
-        <h5 class="card-title">You have been logged out</h5>
-        <p class="card-text">
-            Thank you for using our application.
-        </p>
-        <br><hr><a href="{% url 'login' %}" class="btn btn-dark">Sign in again</a>
+
+    <style>
+        body {
+            background-color: #333;
+        }
+
+        .noselect {
+            -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                    -ms-user-select: none;
+                        user-select: none;
+                    -webkit-tap-highlight-color: transparent;
+         }
+
+         .effect {
+             width: 200px;
+             height: 75px;
+             cursor: pointer;
+             background: #333;
+             border: none;
+             border-radius: 10px;
+             box-shadow: -5px -5px 15px #444, 5px 5px 15px #222, inset 5px 5px 10px #444, inset -5px -5px 10px #222;
+             color: #38B0B5;
+         }
+
+         .effect:hover {
+             box-shadow: -5px -5px 15px #444, 5px 5px 15px #222, inset 5px 5px 10px #222, inset -5px -5px 10px #444;
+             font-size: 15px;
+             transition: 500ms;
+             color: #38B0B5;
+         }
+    </style>
+
+    <div class="lg:w-6/12 mx-auto w-11/12">
+        <p class="text-primary-normal font-semibold text-center">Thank you for using our application.</p>
+        <h5 class=" text-gray-200 text-5xl font-bold text-center mt-6 mb-6 ">You have been logged out</h5>
+        <div class="effect mt-16 mx-auto noselect">
+            <a href="{% url 'login' %}" class="h-full w-full flex justify-center items-center"><span class="h-fit w-fit">CONTINIUE</span></a>
         </div>
     </div>
 
