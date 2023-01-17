@@ -18,6 +18,7 @@
     <title>{% block title %} {% endblock %} </title>
 </head>
 <body>
+  {% if request.path != "/logout/" %}
   <nav class="bg-darker-900 px-2 sm:px-4 py-2.5 w-screen fixed top-0 left-0">
     <div class="container flex flex-wrap items-center justify-between mx-auto">
       <div class="flex items-center text-lg font-bold">
@@ -89,6 +90,7 @@
       </div>
     </div>
   </nav>
+  {% endif %}
 
   <div class="container mx-auto mt-32">
     <!--Any flash messages pop up in any page because this is the base template-->
