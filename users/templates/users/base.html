@@ -18,82 +18,150 @@
     <title>{% block title %} {% endblock %} </title>
 </head>
 <body>
-  <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
+  <nav class="bg-darker-900 px-2 sm:px-4 py-2.5 w-screen fixed top-0 left-0">
     <div class="container flex flex-wrap items-center justify-between mx-auto">
-      <a href="https://flowbite.com/" class="flex items-center">
-          <img src="https://flowbite.com/docs/images/logo.svg" class="h-6 mr-3 sm:h-9" alt="Flowbite Logo" />
-          <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
-      </a>
-      <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
-        <span class="sr-only">Open main menu</span>
-        <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
-      </button>
-      <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-        <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-          <li>
-            <a href="#" class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white" aria-current="page">Home</a>
-          </li>
-          <li>
-            <a href="#" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">About</a>
-          </li>
-          <li>
-            <a href="#" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Services</a>
-          </li>
-          <li>
-            <a href="#" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Pricing</a>
-          </li>
-          <li>
-            <a href="#" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contact</a>
-          </li>
-        </ul>
+      <div class="flex items-center text-lg font-bold">
+        {% if user.is_authenticated %}
+        <a href="/">
+          <img src="./../../../media/assets/logo_light_color.png" class="h-6 mr-6" alt="Logo" />
+        </a>
+        <p class="text-gray-300 font-light">-</p>
+        <a href="/" class="block ml-6 py-2  text-gray-300 hover:text-white">
+          Home
+        </a>
+        {% else %}
+        <img src="./../../../media/assets/logo_light_color.png" class="h-6 mr-6" alt="Logo" />
+        <p class="text-gray-300 font-light">-</p>
+        <p class="block ml-6 py-2  text-gray-300">Energy Monitoring</p>
+        {% endif %}
+      </div>
+      <div class="flex items-center">
+        <button data-collapse-toggle="navbar-default" type="button"
+          class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+          aria-controls="navbar-default" aria-expanded="false">
+          <span class="sr-only">Open main menu</span>
+          <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+              d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+              clip-rule="evenodd"></path>
+          </svg>
+        </button>
+        <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+          <ul class="flex flex-col md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
+            {% if user.is_authenticated %}
+            <li>
+              <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar"
+                class="flex items-center justify-between w-full py-2 pl-3 pr-4 font-medium text-gray-200 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 md:w-auto">
+                <span class="text-gray-400 whitespace-pre"></span> {{user.first_name|default:'Guest'}} {{user.last_name}}
+                <svg class="w-5 h-5 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"></path>
+                </svg>
+              </button>
+              <div id="dropdownNavbar"
+                class="z-10 hidden font-normal bg-darker-800 divide-y divide-darker-900 rounded shadow w-44">
+                <div class="py-1">
+                  <a href="/" class="block px-4 py-2 text-sm font-semibold text-gray-200 hover:text-white">Home</a>
+                </div>
+                <ul class="py-1 text-sm" aria-labelledby="dropdownLargeButton">
+                  <li>
+                    <a href="{% url 'users-profile' %}" class="block px-4 py-2 text-gray-300 hover:text-white">Edit Profile</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'password_change' %}" class="block px-4 py-2 text-gray-300 hover:text-white">Change Password</a>
+                  </li>
+                  <li>
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:text-white">Help</a>
+                  </li>
+                </ul>
+                <div class="py-1">
+                  <a href="{% url 'logout' %}" class="block px-4 py-2 text-sm text-gray-300 hover:text-white">Sign out</a>
+                </div>
+              </div>
+            </li>
+            {% else %}
+            <li>
+              <a href="{% url 'login' %}"
+                class="block py-2 pl-3 pr-4 text-gray-200 rounded md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0">Login</a>
+            </li>
+            <li>
+              <a href="{% url 'users-register' %}"
+                class="block py-2 pl-3 pr-4 text-gray-200 rounded md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0">Registreer</a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+        {% if user.profile.avatar.url %}<a href="{% url 'users-profile' %}"><img class="w-10 h-10 rounded-full ml-4" src="{{ user.profile.avatar.url }} "/></a>{% endif %}
       </div>
     </div>
   </nav>
-  <div class="">
-    <div class="">
-      <div class="">
-        <nav class="" >
-            <a href="/" class="navbar-brand">Home</a>
-              <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                  <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarCollapse">
-                <div class="navbar-nav ml-auto">
-                  {% if user.is_authenticated %}
-                  <a href="{% url 'users-profile' %}" class="nav-item nav-link">Profile</a>
-                  <a href="{% url 'logout' %}" class="nav-item nav-link">Logout</a>
-                  {% else %}
-                  <a href="{% url 'login' %}" class="nav-item nav-link">Sign in</a>
-                  {% endif %}
-                </div>
-          </div>
-        </nav>
-        <div class="container">
-        <!--Any flash messages pop up in any page because this is the base template-->
-        {% if messages %}
-          <div class="alert alert-dismissible" role="alert">
-            {% for message in messages %}
-              <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-            {% endfor %}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-        {% endif %}
-        {% block content %}{% endblock %}
-        </div>
 
+  <div class="container mx-auto mt-32">
+    <!--Any flash messages pop up in any page because this is the base template-->
+    {% if messages %}
+
+    <div class="">
+      {% for message in messages %}
+      {% if message.tags == 'success' %}
+      <div id="alert-3" class="flex p-4 mb-4 text-success-200 bg-success-100 rounded-lg" role="alert">
+        <svg aria-hidden="true" class="flex-shrink-0 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+        <span class="sr-only">Info</span>
+        <div class="ml-3 text-sm font-medium">{{ message }}</div>
+
+        <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-success-100 text-success-200 rounded-lg hover:bg-success-100 inline-flex h-8 w-8" data-dismiss-target="#alert-3" aria-label="Close">
+          
+          <span class="sr-only">Close</span>
+          <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+        </button>
       </div>
+      {% endif %}
+      {% if message.tags == 'warning' %}
+      <div id="alert-3" class="flex p-4 mb-4 text-warning-200 bg-warning-100 rounded-lg" role="alert">
+        <svg aria-hidden="true" class="flex-shrink-0 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+        <span class="sr-only">Info</span>
+        <div class="ml-3 text-sm font-medium">{{ message }}</div>
+
+        <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-warning-100 text-warning-200 rounded-lg hover:bg-warning-100 inline-flex h-8 w-8" data-dismiss-target="#alert-3" aria-label="Close">
+          
+          <span class="sr-only">Close</span>
+          <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+        </button>
+      </div>
+      {% endif %}
+      {% if message.tags == 'error' %}
+      <div id="alert-3" class="flex p-4 mb-4 text-error-200 bg-error-100 rounded-lg" role="alert">
+        <svg aria-hidden="true" class="flex-shrink-0 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+        <span class="sr-only">Info</span>
+        <div class="ml-3 text-sm font-medium">{{ message }}</div>
+
+        <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-error-100 text-error-200 rounded-lg hover:bg-error-100 inline-flex h-8 w-8" data-dismiss-target="#alert-3" aria-label="Close">
+          
+          <span class="sr-only">Close</span>
+          <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+        </button>
+      </div>
+      {% endif %}
+      {% endfor %}
     </div>
+
+    {% endif %}
+    {% block content %}{% endblock %}
   </div>
 
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.min.js"></script>
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.min.js"></script>
 
-    <!-- A plugin for password show/hide  -->
-    <script src="https://unpkg.com/bootstrap-show-password@1.2.1/dist/bootstrap-show-password.min.js"></script>
+  <!-- A plugin for password show/hide  -->
+  <script src="https://unpkg.com/bootstrap-show-password@1.2.1/dist/bootstrap-show-password.min.js"></script>
 
 </body>
 </html>
