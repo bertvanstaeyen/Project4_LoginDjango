@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.core.exceptions import ValidationError
+from social_core.backends import username
 
 from .models import Profile
 
@@ -44,7 +46,19 @@ class RegisterForm(UserCreationForm):
                             widget=forms.TextInput(attrs={'placeholder': 'Serial Number',
                                                               'class': 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-normal focus:border-primary-normal block w-full p-2.5',
                                                               'id': 'serialNumber',
-                                                              }))               
+                                                              }))
+
+    def clean_email(self):
+         email = self.cleaned_data['email']
+         if User.objects.filter(email=email).exists():
+             raise ValidationError("Email already exists")
+         return email
+
+    def clean_username(self):
+        user = self.cleaned_data['username']
+        if User.objects.filter(username=username).exists():
+            raise ValidationError("Username already exists")
+        return user
 
     class Meta:
         model = User
