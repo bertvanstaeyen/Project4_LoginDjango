@@ -13,6 +13,8 @@
     <!--Font awesome icons -->
 	  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.min.js"></script>
+
     {% block head %}
     {% endblock %}
 
@@ -46,7 +48,7 @@
                 {% if user.profile.avatar.url %}<img class="w-8 h-8 mr-4 rounded-full" src="{{ user.profile.avatar.url }}" alt="user photo"> {% endif %}
                 {{user.first_name|default:'Guest'}} {{user.last_name}}
                 <svg class="w-4 h-4 mx-1.5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-            </button>
+              </button>
               <div id="dropdownNavbar"
                 class=" z-10 hidden font-normal bg-darker-800 divide-y divide-darker-900 rounded-b-lg w-44 shadow-2xl shadow-darker-800/30">
                 <div class="py-1">
@@ -149,10 +151,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
     integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
     crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.min.js"></script>
 
   <!-- A plugin for password show/hide  -->
   <script src="https://unpkg.com/bootstrap-show-password@1.2.1/dist/bootstrap-show-password.min.js"></script>
-
 </body>
 </html>
