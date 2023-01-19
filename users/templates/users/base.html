@@ -21,7 +21,7 @@
     <title>{% block title %} {% endblock %} </title>
 </head>
 <body>
-  {% if "/logout/" not in request.path and "/login/" not in request.path and "/register/" not in request.path and "/password-reset/" not in request.path%}
+  {% if "/logout/" not in request.path and "/login/" not in request.path and "/register/" not in request.path and "/password-reset/" not in request.path %}
   <nav class="bg-darker-800 sm:px-4 py-2.5 w-screen fixed top-0 left-0 shadow-lg shadow-gray-200">
     <div class="container flex flex-wrap items-center justify-between mx-auto">
       <div class="flex items-center ml-4 text-sm font-medium">
@@ -62,7 +62,7 @@
                     <a href="{% url 'password_change' %}" class="block px-4 py-2 text-gray-200 hover:text-primary-light"><i class="fas fa-key mr-2"></i>Change Password</a>
                   </li>
                   <li>
-                    <a href="#" class="block px-4 py-2 text-gray-200 hover:text-primary-light"><i class="fas fa-question mr-2"></i>Help</a>
+                    <a href="{% url 'users-help' %}" class="block px-4 py-2 text-gray-200 hover:text-primary-light"><i class="fas fa-question mr-2"></i>Help</a>
                   </li>
                 </ul>
                 <div class="py-1">
@@ -70,6 +70,15 @@
                 </div>
               </div>
             </li>
+            {% else %}
+
+            <li>
+              <a href="{% url 'login' %}" class="block px-4 py-2 text-gray-200 hover:text-primary-light"><i class="fas fa-chevron-right mr-2"></i>Login</a>
+            </li>
+            <li>
+              <a href="{% url 'users-register' %}" class="block px-4 py-2 text-gray-200 hover:text-primary-light"><i class="fas fa-chevron-right mr-2"></i>Register</a>
+            </li>
+
             {% endif %}
           </ul>
         </div>
@@ -78,7 +87,7 @@
   </nav>
   {% endif %}
 
-  <div class="container mx-auto mt-32">
+  <div class="container mx-auto mt-8">
     <!--Any flash messages pop up in any page because this is the base template-->
     {% if messages %}
 
