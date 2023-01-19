@@ -39,55 +39,68 @@
             transition: 500ms;
             color: #38B0B5;
         }
+
+        .center-img {
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70%;
+        }
     </style>
     
     <div class="mx-auto w-11/12 lg:w-4/12 effectStatic p-1 mb-12">
         <h3 class="text-center text-3xl text-primary-normal font-semibold m-8 ">Sign In</h3>
     </div>
 
-    {% if user_form.errors %}
-    <div id="alert-3" class="flex p-4 text-error-200 bg-error-100 rounded-lg" role="alert">
-        <svg aria-hidden="true" class="flex-shrink-0 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
-        <span class="sr-only">Error</span>
-        <div id="ml-3 text-sm font-medium">
-            {% for key, value in user_form.errors.items %}
-                <strong>{{ value }}</strong>
-            {% endfor %}
-        </div>
-        <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-error-100 text-error-200 rounded-lg hover:bg-error-100 inline-flex h-8 w-8" data-dismiss-target="#alert-3" aria-label="Close">
-          <span class="sr-only">Close</span>
-          <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-        </button>
-      </div>
+    {% if form.errors %}
+    <div class="w-11/12 lg:w-6/12 fixed top-6 inset-x-0 mx-auto">
+        <div id="alert-3" class="mx-auto flex p-4 text-error-200 bg-error-100 rounded-lg mb-12" role="alert">
+            <svg aria-hidden="true" class="flex-shrink-0 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+            <span class="sr-only">Error</span>
+            <div id="ml-3 text-sm font-medium">
+                {% for key, value in form.errors.items %}
+                    <strong>{{ value }}</strong>
+                {% endfor %}
+            </div>
+            <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-error-100 text-error-200 rounded-lg hover:bg-error-100 inline-flex h-8 w-8" data-dismiss-target="#alert-3" aria-label="Close">
+              <span class="sr-only">Close</span>
+              <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+            </button>
+          </div>
+    </div>
     {% endif %}
 
-<div class="mx-auto w-11/12 lg:w-4/12">
+<div class="mx-auto w-11/12 lg:w-8/12">
 
-    <div class="effectStatic bg-gray-100 p-8 pb-4">
-        <form method="POST">
-            {% csrf_token %}
-            <div class="mb-2 mt-6">
-                <label class="block mb-2 text-sm font-medium text-gray-700">Username</label>
-                {{ form.username }}
-            </div>
-            <div class="mb-2 mt-6">
-                <label class="block mb-2 text-sm font-medium text-gray-700">Password</label>
-                {{ form.password }}
-
-            </div>
-            <div class=" mx-auto my-4 w-fit">
-                <!-- Add a Remember me functionality -->
-                {{ form.remember_me }}
-                <label class="mb-2 text-sm font-medium text-gray-700"> Remember me</label>
-            </div>
-            <div class=" mx-auto my-6 w-fit">
-                <button name="login" class="w-48 h-12 bg-primary-normal hover:bg-primary-dark rounded-lg text-white font-bold"
-                    id="login">Sign in</button>
-            </div>
-        </form>
+    <div class="effectStatic bg-gray-100 p-8 pb-4 grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="p-4">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-2 mt-6">
+                    <label class="block mb-2 text-sm font-medium text-gray-700">Username</label>
+                    {{ form.username }}
+                </div>
+                <div class="mb-2 mt-6">
+                    <label class="block mb-2 text-sm font-medium text-gray-700">Password</label>
+                    {{ form.password }}
+                </div>
+                <div class=" mx-auto my-4 w-fit">
+                    <!-- Add a Remember me functionality -->
+                    {{ form.remember_me }}
+                    <label for="rememberme" class="noselect cursor-pointer mb-2 text-sm font-medium text-gray-700"> Remember me</label>
+                </div>
+                <div class=" mx-auto my-6 w-fit">
+                    <button name="login" class="w-48 h-12 bg-primary-normal hover:bg-primary-dark rounded-lg text-white font-bold"
+                        id="login">Sign in</button>
+                </div>
+            </form>
+        </div>
+        <div class="hidden lg:block relative">
+            <img class="center-img absolute top-4" src="../../../media/assets/logo_light_color.png" alt="">
+            <h3 class="absolute bottom-8 w-full text-center mt-4 text-primary-normal font-bold text-xl">Energy Monitoring</h3>
+        </div>
     </div>
 
-    <div class="effectStatic mt-12  p-8">
+    <div class="effectStatic mt-12 lg:w-6/12 mx-auto p-8">
         <div class="grid gap-1 text-center">
             <p class="text-gray-600 text-sm">Don't have an account yet?  <a href="{% url 'users-register' %}" class="text-primary-light">Register here</a></p>
             <p class="text-gray-600 text-sm">Forgot Password?  <a href="{% url 'password_reset' %}" class="text-primary-light">Reset password</a></p>
