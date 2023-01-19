@@ -10,19 +10,17 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.min.css" rel="stylesheet" />
     {% tailwind_css %}
 
-    <!-- Chart.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" integrity="sha256-Uv9BNBucvCPipKQ2NS9wYpJmi8DTOEfTA/nH2aoJALw=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" />
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-
     <!--Font awesome icons -->
 	  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+    {% block head %}
+    {% endblock %}
 
     <title>{% block title %} {% endblock %} </title>
 </head>
 <body>
   {% if "/logout/" not in request.path and "/login/" not in request.path and "/register/" not in request.path and "/password-reset/" not in request.path %}
-  <nav class="bg-darker-800 sm:px-4 py-2.5 w-screen fixed top-0 left-0 shadow-lg shadow-gray-200">
+  <nav class="bg-darker-800 sm:px-4 py-2.5 w-screen fixed top-0 left-0 shadow-lg shadow-gray-200 z-50">
     <div class="container flex flex-wrap items-center justify-between mx-auto">
       <div class="flex items-center ml-4 text-sm font-medium">
         {% if user.is_authenticated %}

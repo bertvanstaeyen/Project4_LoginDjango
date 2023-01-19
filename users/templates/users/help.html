@@ -1,7 +1,107 @@
 {% extends "users/base.html" %}
 {% block content %}
+<style>
+    body {
+        background-color: rgb(243 244 246);
+    }
+
+    .noselect {
+        -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+                -ms-user-select: none;
+                    user-select: none;
+                -webkit-tap-highlight-color: transparent;
+    }
+
+    .effectStatic {
+        border: none;
+        border-radius: 40px;
+        box-shadow: -5px -5px 15px #FFF, 5px 5px 15px #DDD, inset 5px 5px 10px #FFF, inset -5px -5px 10px #DDD;
+    }
+
+    .effect {
+        width: 200px;
+        height: 75px;
+        cursor: pointer;
+        background: #333;
+        border: none;
+        border-radius: 10px;
+        box-shadow: -5px -5px 15px #444, 5px 5px 15px #222, inset 5px 5px 10px #444, inset -5px -5px 10px #222;
+        color: #38B0B5;
+    }
+
+    .effect:hover {
+        box-shadow: -5px -5px 15px #444, 5px 5px 15px #222, inset 5px 5px 10px #222, inset -5px -5px 10px #444;
+        font-size: 15px;
+        transition: 500ms;
+        color: #38B0B5;
+    }
+
+    .center-img {
+        left: 50%;
+        transform: translateX(-50%);
+        width: 70%;
+    }
+</style>
+
 <div class="container">
-    <h3 class="text-primary-normal font-semibold text-xl text-center mt-24">Manual Page</h3>
-    <img src="../../../media/assets/digitale_meter.jpg" alt="digitale meter" class="mx-auto mt-12">
+    <h3 class="text-primary-normal font-semibold text-xl text-center mt-24">Help Page</h3>
+    <div class="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-10 mt-16">
+        <div class="effectStatic p-8">
+            <h3 class="font-bold text-sm text-center">Waarom moet ik mijn seriële nummer opgeven?</h3>
+            <hr class="mx-12 mt-6 mb-12 bg-primary-light border-0 h-px">
+            <div class="w-fit mx-auto mb-8">
+                <svg width="223" height="104" viewBox="0 0 223 75" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="222.469" y="61.2245" width="102.551" height="61.2245" rx="15.3061" transform="rotate(-180 222.469 61.2245)" fill="#38B0B5"/>
+                    <rect x="0.53064" y="44.3878" width="81.1225" height="30.6122" rx="15.3061" fill="#D5AF76"/>
+                    <path d="M23.3979 61.551V44.7755L20.2143 45.3265V42.5408L26.7041 41.5306V61.551H23.3979ZM36.5715 61.8571C34.0205 61.8571 31.9695 61.5306 30.4184 60.8776V57.9388C31.296 58.2653 32.2348 58.5306 33.2348 58.7347C34.2552 58.9388 35.2654 59.0408 36.2654 59.0408C37.8368 59.0408 39.0103 58.8571 39.7858 58.4898C40.5817 58.1225 40.9797 57.3878 40.9797 56.2857C40.9797 55.6122 40.8164 55.0714 40.4899 54.6633C40.1633 54.2551 39.6225 53.9082 38.8674 53.6225C38.1123 53.3163 37.0715 53 35.745 52.6735C33.6225 52.1225 32.1327 51.4286 31.2756 50.5918C30.4184 49.7347 29.9899 48.5612 29.9899 47.0714C29.9899 45.3367 30.6225 43.9796 31.8878 43C33.1531 42.0204 35.0409 41.5306 37.5511 41.5306C38.6939 41.5306 39.7654 41.6122 40.7654 41.7755C41.7858 41.9388 42.5817 42.1225 43.1531 42.3265V45.2653C41.6021 44.6735 39.8878 44.3776 38.0103 44.3776C36.5409 44.3776 35.398 44.5714 34.5817 44.9592C33.7654 45.3469 33.3572 46.051 33.3572 47.0714C33.3572 47.6633 33.5001 48.1429 33.7858 48.5102C34.0715 48.8776 34.5613 49.1939 35.2552 49.4592C35.9695 49.7245 36.949 50.0204 38.1939 50.3469C39.8062 50.7551 41.0511 51.2449 41.9286 51.8163C42.8266 52.3674 43.449 53.0204 43.796 53.7755C44.1633 54.5102 44.347 55.3469 44.347 56.2857C44.347 58.0204 43.7042 59.3878 42.4184 60.3878C41.1327 61.3674 39.1837 61.8571 36.5715 61.8571ZM47.5823 61.551V41.8367H61.3272V44.4388H50.9191V50.4082H60.1946V52.9796H50.9191V58.9796H61.3272V61.551H47.5823ZM73.2978 61.8571C70.0529 61.8571 67.6039 60.9796 65.9509 59.2245C64.3182 57.4694 63.5019 55.0918 63.5019 52.0918C63.5019 49.9286 63.859 48.0612 64.5733 46.4898C65.2876 44.898 66.3692 43.6735 67.8182 42.8163C69.2876 41.9592 71.1448 41.5306 73.3897 41.5306C74.5529 41.5306 75.6039 41.6122 76.5427 41.7755C77.5019 41.9184 78.3999 42.1327 79.2366 42.4184V45.2959C77.5631 44.6837 75.706 44.3776 73.6652 44.3776C71.155 44.3776 69.3897 45.0408 68.3692 46.3674C67.3692 47.6939 66.8692 49.602 66.8692 52.0918C66.8692 54.3571 67.3999 56.0816 68.4611 57.2653C69.5223 58.449 71.1652 59.0408 73.3897 59.0408C75.1448 59.0408 76.5631 58.8367 77.6448 58.4286V52.9184H72.7162V50.7449H80.4917V60.2347C79.859 60.6429 78.9509 61.0204 77.7672 61.3674C76.6039 61.6939 75.1141 61.8571 73.2978 61.8571ZM85.8986 51.6633L83.9394 50.2245L86.6639 47.2551L83.1129 45.7857L84.1537 43.7041L87.2761 45.2347L87.1231 41.8367H89.6945L89.5414 45.2347L92.6639 43.7041L93.6741 45.7857L90.1231 47.2551L92.8476 50.2245L90.8884 51.6633L88.4088 48.3878L85.8986 51.6633ZM99.1121 51.6633L97.1529 50.2245L99.8774 47.2551L96.3264 45.7857L97.3672 43.7041L100.49 45.2347L100.337 41.8367H102.908L102.755 45.2347L105.877 43.7041L106.888 45.7857L103.337 47.2551L106.061 50.2245L104.102 51.6633L101.622 48.3878L99.1121 51.6633ZM112.326 51.6633L110.366 50.2245L113.091 47.2551L109.54 45.7857L110.581 43.7041L113.703 45.2347L113.55 41.8367H116.121L115.968 45.2347L119.091 43.7041L120.101 45.7857L116.55 47.2551L119.275 50.2245L117.315 51.6633L114.836 48.3878L112.326 51.6633ZM125.539 51.6633L123.58 50.2245L126.304 47.2551L122.753 45.7857L123.794 43.7041L126.917 45.2347L126.764 41.8367H129.335L129.182 45.2347L132.304 43.7041L133.315 45.7857L129.764 47.2551L132.488 50.2245L130.529 51.6633L128.049 48.3878L125.539 51.6633ZM138.753 51.6633L136.793 50.2245L139.518 47.2551L135.967 45.7857L137.008 43.7041L140.13 45.2347L139.977 41.8367H142.548L142.395 45.2347L145.518 43.7041L146.528 45.7857L142.977 47.2551L145.702 50.2245L143.742 51.6633L141.263 48.3878L138.753 51.6633ZM151.966 51.6633L150.007 50.2245L152.731 47.2551L149.18 45.7857L150.221 43.7041L153.344 45.2347L153.191 41.8367H155.762L155.609 45.2347L158.731 43.7041L159.742 45.7857L156.191 47.2551L158.915 50.2245L156.956 51.6633L154.476 48.3878L151.966 51.6633ZM165.18 51.6633L163.22 50.2245L165.945 47.2551L162.394 45.7857L163.435 43.7041L166.557 45.2347L166.404 41.8367H168.975L168.822 45.2347L171.945 43.7041L172.955 45.7857L169.404 47.2551L172.128 50.2245L170.169 51.6633L167.69 48.3878L165.18 51.6633ZM178.393 51.6633L176.434 50.2245L179.158 47.2551L175.607 45.7857L176.648 43.7041L179.771 45.2347L179.617 41.8367H182.189L182.036 45.2347L185.158 43.7041L186.169 45.7857L182.617 47.2551L185.342 50.2245L183.383 51.6633L180.903 48.3878L178.393 51.6633Z" fill="black"/>
+                    </svg>
+                    
+            </div>
+                
+            <p>Om je te <span class="text-primary-normal">registreren</span> hebben we enkele gegevens nodig van jou:</p>
+            <ul class="list-disc ml-8 mt-2 mb-4">
+                <li>Voornaam, Achternaam</li>
+                <li>Email</li>
+                <li>Gebruikersnaam</li>
+                <li>Seriële nummer van de meter</li>
+            </ul>
+            <p class="my-6">We gebruiken jouw <span class="text-primary-normal">seriële nummer</span> om zo de juiste data in de grafieken te krijgen.</p>
+            <p class="mb-4">Als je seriële nummer later zou veranderen (door bv. verhuis). Kan je deze later <span class="text-primary-normal">altijd aanpassen</span> en zullen de grafieken aangepast worden naar jouw nieuwe digitale meter.</p>
+        </div>
+        <div class="effectStatic p-8">
+            <h3 class="font-bold text-sm text-center">Wat kan ik met de applicatie?</h3>
+            <hr class="mx-12 mt-6 mb-12 bg-primary-light border-0 h-px">
+            <div class="w-fit mx-auto mb-8">
+                <svg width="142" height="104" viewBox="0 0 142 104" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="48.7255" y="0.490173" width="93.2745" height="55.6863" rx="20.8824" fill="#38B0B5"/>
+                    <rect y="61.7451" width="73.7843" height="41.7647" rx="20.8824" fill="#D5AF76"/>
+                    <line x1="14.6177" y1="80.5392" x2="124.598" y2="80.5392" stroke="black" stroke-width="4.17647" stroke-linecap="round"/>
+                    <path d="M45.9412 79.8431V54.7843C45.9412 51.7089 43.448 49.2157 40.3726 49.2157H33.4118C30.3363 49.2157 27.8431 51.7089 27.8431 54.7843V79.8431" stroke="black" stroke-width="4.17647"/>
+                    <path d="M79.3529 79.8431V15.8039C79.3529 12.7284 76.8598 10.2353 73.7843 10.2353H66.8235C63.748 10.2353 61.2549 12.7284 61.2549 15.8039V79.8431" stroke="black" stroke-width="4.17647"/>
+                    <path d="M111.373 79.8432V36.6863C111.373 33.6108 108.879 31.1177 105.804 31.1177H98.8432C95.7677 31.1177 93.2745 33.6108 93.2745 36.6863V79.8432" stroke="black" stroke-width="4.17647"/>
+                    </svg>
+                    
+            </div>
+                
+            <p>Door onze applicatie te gebruiken kan je op een ordelijke manier kijken hoeveel elektriciteit je verbruikt en aanmaakt.</p>
+        </div>
+        <div class="effectStatic p-8">
+            <h3 class="font-bold text-sm text-center">Waar vind ik mijn seriële nummer?</h3>
+            <hr class="mx-12 mt-6 mb-12 bg-primary-light border-0 h-px">
+            <div class="w-fit mx-auto mb-8">
+                <svg width="149" height="104" viewBox="0 0 149 92" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0.135132" width="85.7295" height="51.108" rx="24.7297" fill="#38B0B5"/>
+                    <rect x="75.9729" y="57.7026" width="72.5404" height="23.081" rx="11.5405" fill="#D5AF76"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M80.9188 91.4704C80.2615 91.5656 79.5681 91.4355 78.963 91.0522C68.4979 84.4243 59.5527 72.8999 53.2524 61.5104C46.9897 50.1888 43 38.377 43 30.9123V28.8611L63.4845 21.7361L78.7952 10.4545C79.4307 9.98619 80.1947 9.81708 80.9188 9.92163C81.6429 9.81708 82.4069 9.98619 83.0424 10.4545L98.3532 21.7361L118.838 28.8611V30.9123C118.838 38.377 114.848 50.1888 108.585 61.5104C102.285 72.8999 93.3398 84.4243 82.8747 91.0522C82.2695 91.4355 81.5762 91.5656 80.9188 91.4704ZM80.9188 16.0572L66.2046 26.8993L48.8798 32.9253C49.5094 39.1465 52.8316 48.8288 58.3016 58.7173C64.1197 69.2351 72.0554 79.4137 80.9188 85.4347C89.7822 79.4137 97.718 69.2351 103.536 58.7173C109.006 48.8288 112.328 39.1465 112.958 32.9253L95.633 26.8993L80.9188 16.0572Z" fill="black"/>
+                    </svg>
+                    
+            </div>
+            <p>De seriële nummer kan je vinden op de voorkant van je digitale meter. </p>
+            <img src="../../../media/assets/digitale_meter.jpg" alt="digitale meter" class="mx-auto mt-12 rounded-xl brightness-125">
+        </div>
+    </div>
 </div>
 {% endblock content %}
