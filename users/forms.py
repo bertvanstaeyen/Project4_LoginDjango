@@ -65,7 +65,7 @@ class LoginForm(AuthenticationForm):
                                                                  'id': 'password',
                                                                  'name': 'password',
                                                                  }))
-    remember_me = forms.BooleanField(required=False)
+    remember_me = forms.BooleanField(required=False, widget=forms.CheckboxInput( attrs={"id":"rememberme", "name":"rememberme", "class": "w-4 h-4 text-primary-normal bg-gray-100 border-gray-300 rounded focus:ring-primary-normal focus:ring-2 mr-2"}))
 
     class Meta:
         model = User
