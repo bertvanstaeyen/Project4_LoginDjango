@@ -18,13 +18,13 @@ class RegisterForm(UserCreationForm):
                                                               'class': 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-normal focus:border-primary-normal block w-full p-2.5',
                                                               }))
     username = forms.CharField(max_length=100,
-                               unique=True,
+                            #    unique=True,
                                required=True,
                                widget=forms.TextInput(attrs={'placeholder': 'Username',
                                                              'class': 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-normal focus:border-primary-normal block w-full p-2.5',
                                                              }))
     email = forms.EmailField(required=True,
-                             unique=True,
+                            #  unique=True,
                              widget=forms.TextInput(attrs={'placeholder': 'Email',
                                                            'class': 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-normal focus:border-primary-normal block w-full p-2.5',
                                                            }))
@@ -77,10 +77,10 @@ class LoginForm(AuthenticationForm):
 class UpdateUserForm(forms.ModelForm):
     username = forms.CharField(max_length=100,
                                required=True,
-                               unique=True,
+                            #    unique=True,
                                widget=forms.TextInput(attrs={'class': 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-normal focus:border-primary-normal block w-full p-2.5'}))
     email = forms.EmailField(required=True,
-                             unique=True,
+                            #  unique=True,
                              widget=forms.TextInput(attrs={'class': 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-normal focus:border-primary-normal block w-full p-2.5'}))
     
     serialNumber = forms.CharField(max_length=50,

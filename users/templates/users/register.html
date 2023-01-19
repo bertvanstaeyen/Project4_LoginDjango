@@ -47,7 +47,7 @@
         }
     </style>
 
-<div class="mx-auto w-11/12 lg:w-4/12 effectStatic p-1 mb-12">
+<div class="mx-auto w-11/12 lg:w-4/12 effectStatic p-1 mb-4">
     <h3 class="text-center text-3xl text-primary-normal font-semibold m-8 ">Create Account</h3>
 </div>
 
@@ -128,6 +128,8 @@
             <div class="mx-auto mt-8 w-fit text-center mb-4">
                 <button type="submit" class="mb-6 w-48 h-12 bg-primary-normal hover:bg-primary-dark rounded-lg text-white font-bold">Sign Up</button>
                 <p class="text-gray-600 text-sm w-fit h-fit">Already have an account?  <a href="{% url 'login' %}" class="text-primary-light w-fit h-fit">Sign in here</a></p>
+                <p class="text-gray-600 text-sm">Need some help? Take a quick look <a href="{% url 'users-help' %}" class="text-primary-light">Here</a></p>
+
             </div>
         </form>
     </div>
