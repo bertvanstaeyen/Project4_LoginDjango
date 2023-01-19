@@ -9,6 +9,8 @@ class Profile(models.Model):
 
     avatar = models.ImageField(default='default.jpg', upload_to='profile_images')
 
+    serialNumber = models.CharField(("serial number"),max_length=50)
+
     def __str__(self):
         return self.user.username
 
