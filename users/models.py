@@ -1,15 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
-from PIL import Image
+# from PIL import Image
 
 
 # Extending User Model Using a One-To-One Link
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     # avatar = models.ImageField(default='default.jpg', upload_to='profile_images')
-
-    serialNumber = models.CharField(("serial number"),max_length=50)
+    serialNumber = models.CharField(max_length=50, null=True, blank=True)
 
     def __str__(self):
         return self.user.username
@@ -24,6 +22,13 @@ class Profile(models.Model):
         #     new_img = (100, 100)
         #     img.thumbnail(new_img)
         #     img.save(self.avatar.path)
+
+# class SerialNumber(models.Model):
+#     user = models.ForeignKey(User, on_delete=models.CASCADE)
+#     serialNumber = models.CharField(max_length=50)
+
+#     def __str__(self):
+#         return self.user.username
 
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=150)
