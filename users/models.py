@@ -7,7 +7,7 @@ from PIL import Image
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
-    avatar = models.ImageField(default='default.jpg', upload_to='profile_images')
+    # avatar = models.ImageField(default='default.jpg', upload_to='profile_images')
 
     serialNumber = models.CharField(("serial number"),max_length=50)
 
@@ -18,12 +18,12 @@ class Profile(models.Model):
     def save(self, *args, **kwargs):
         super().save()
 
-        img = Image.open(self.avatar.path)
+        # img = Image.open(self.avatar.path)
 
-        if img.height > 100 or img.width > 100:
-            new_img = (100, 100)
-            img.thumbnail(new_img)
-            img.save(self.avatar.path)
+        # if img.height > 100 or img.width > 100:
+        #     new_img = (100, 100)
+        #     img.thumbnail(new_img)
+        #     img.save(self.avatar.path)
 
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=150)
@@ -202,13 +202,13 @@ class SocialAuthUsersocialauth(models.Model):
         unique_together = (('provider', 'uid'),)
 
 
-class Users(models.Model):
-    id = models.IntegerField(db_column='ID', primary_key=True)  # Field name made lowercase.
-    username = models.CharField(max_length=255)
+# class Users(models.Model):
+#     id = models.IntegerField(db_column='ID', primary_key=True)  # Field name made lowercase.
+#     username = models.CharField(max_length=255)
 
-    class Meta:
-        managed = False
-        db_table = 'users'
+#     class Meta:
+#         managed = False
+#         db_table = 'users'
 
 
 # class UsersProfile(models.Model):
