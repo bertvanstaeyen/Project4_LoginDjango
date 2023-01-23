@@ -776,6 +776,10 @@ select{
   left: 0px;
 }
 
+.top-20{
+  top: 5rem;
+}
+
 .top-6{
   top: 1.5rem;
 }
@@ -788,20 +792,12 @@ select{
   bottom: 2rem;
 }
 
-.top-10{
-  top: 2.5rem;
-}
-
 .top-12{
   top: 3rem;
 }
 
-.top-16{
-  top: 4rem;
-}
-
-.top-20{
-  top: 5rem;
+.top-10{
+  top: 2.5rem;
 }
 
 .z-50{
