@@ -81,6 +81,18 @@ class LoginForm(AuthenticationForm):
                                                                  }))
     remember_me = forms.BooleanField(required=False, widget=forms.CheckboxInput( attrs={"id":"rememberme", "name":"rememberme", "class": "w-4 h-4 text-primary-normal bg-gray-100 border-gray-300 rounded focus:ring-primary-normal focus:ring-2 mr-2"}))
 
+
+    def clean_email(self):
+         email = self.cleaned_data['email']
+         if User.objects.filter(email=email).exists():
+             raise ValidationError("Email already exists")
+         return email
+
+    def clean_username(self):
+        user = self.cleaned_data['username']
+        if User.objects.filter(username=username).exists():
+            raise ValidationError("Username already exists")
+        return user
     class Meta:
         model = User
         fields = ['username', 'password', 'remember_me']
