@@ -3,9 +3,14 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.core.exceptions import ValidationError
 from social_core.backends import username
+from django.contrib.auth.forms import SetPasswordForm
 
 from .models import Profile
 
+class SetPasswordForm(SetPasswordForm):
+    class Meta:
+        model = User
+        fields = ['new_password1', 'new_password2']
 
 class RegisterForm(UserCreationForm):
     # fields we want to include and customize in our form

@@ -74,6 +74,18 @@
         });
 
     $("explore-selections-label").addClass("hidden");
+
+    // on click events
+    $('#setDay').click(() => {
+
+    });
+
+    // remove classes
+    function removeClasses(item1, item2) {
+        $(item1).removeClass()
+    }
+
+    // add classes
 </script>
 {% endblock script %}
 {% block content %}
@@ -105,6 +117,20 @@
             margin: 0 45px 45px 0;
         }
     </style>
+
+    <!-- <div class=" w-full flex flex-wrap justify-center fixed top-14 h-8  bg-darker-900 z-10 left-0">
+        <ul class="flex flex-wrap justify-center">
+            <li class="w-20 text-center pt-1 text-primary-light hover:text-primary-normal hover:cursor-pointer">
+                Day
+            </li>
+            <li class="w-20 mx-4 text-center pt-1 text-primary-light hover:text-primary-normal hover:cursor-pointer">
+                Week
+            </li>
+            <li class="w-20 text-center pt-1 text-primary-light hover:text-primary-normal hover:cursor-pointer">
+                Month
+            </li>
+        </ul>
+    </div> -->
 
     <div class="mt-24">
         <div id="CurrentSelections" class="qvobjects" style="position:relative; top:0; left:0; width:100%; height:38px;"> </div>

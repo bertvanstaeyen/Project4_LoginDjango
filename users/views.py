@@ -7,6 +7,7 @@ from django.views import View
 from django.contrib.auth.decorators import login_required
 
 from .forms import RegisterForm, LoginForm, UpdateUserForm, UpdateProfileForm
+from .forms import SetPasswordForm
 
 @login_required
 def home(request):
@@ -74,10 +75,26 @@ class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
                       "please make sure you've entered the address you registered with, and check your spam folder."
     success_url = reverse_lazy('users-home')
 
-class ChangePasswordView(SuccessMessageMixin, PasswordChangeView):
-    template_name = 'users/change_password.html'
-    success_message = "Successfully Changed Your Password"
-    success_url = reverse_lazy('users-home')
+# class ChangePasswordView(SuccessMessageMixin, PasswordChangeView):
+#     template_name = 'users/change_password.html'
+#     success_message = "Successfully Changed Your Password"
+#     success_url = reverse_lazy('users-home')
+
+@login_required
+def ChangePasswordView(request):
+    user = request.user
+    if request.method == 'POST':
+        form = SetPasswordForm(user, request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Your password has been changed")
+            return redirect('login')
+        else:
+            for error in list(form.errors.values()):
+                messages.error(request, error)
+
+    form = SetPasswordForm(user)
+    return render(request, 'users/change_password.html', {'form': form})
 
 
 @login_required

@@ -32,7 +32,7 @@ urlpatterns = [
          auth_views.PasswordResetCompleteView.as_view(template_name='users/password_reset_complete.html'),
          name='password_reset_complete'),
 
-    path('password-change/', ChangePasswordView.as_view(), name='password_change'),
+    path('password-change/', ChangePasswordView, name='password_change'),
 
     re_path(r'^oauth/', include('social_django.urls', namespace='social')),
 
