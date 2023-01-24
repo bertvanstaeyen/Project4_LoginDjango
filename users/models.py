@@ -228,7 +228,7 @@ class SocialAuthUsersocialauth(models.Model):
 
 
 class WimhElectricity(models.Model):
-    id = models.IntegerField(db_column='ID', primary_key=True)  # Field name made lowercase.
+    # auto_id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
     tijdstip = models.DateTimeField()
     switch = models.IntegerField()
     serialmeter = models.CharField(db_column='serialMeter', max_length=15)  # Field name made lowercase.
@@ -253,5 +253,8 @@ class WimhElectricity(models.Model):
     l3current = models.FloatField(db_column='l3Current', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'wimh_electricity'
+
+    def __str__(self):
+        return self.id
