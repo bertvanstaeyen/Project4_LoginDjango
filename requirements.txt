@@ -23,3 +23,6 @@ django-tailwind==3.4.0
 mssql==1.0.1
 pyodbc==4.0.35
 mssql-django==1.2
+djangorestframework==3.14.0
+djangorestframework-simplejwt==5.2.2
+whitenoise==6.3.0
