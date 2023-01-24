@@ -77,15 +77,43 @@
 
     // on click events
     $('#setDay').click(() => {
+        reset1('#setMonth', '#setWeek');
+        reset2('#setDay');
+    });
 
+    $('#setWeek').click(() => {
+        reset1('#setMonth', '#setDay');
+        reset2('#setWeek');
+    });
+
+    $('#setMonth').click(() => {
+        reset1('#setDay', '#setWeek');
+        reset2('#setMonth');
     });
 
     // remove classes
-    function removeClasses(item1, item2) {
-        $(item1).removeClass()
+    function reset1(item1, item2) {
+        $(item1).addClass('hover:text-primary-light');
+        $(item1).addClass('text-gray-200 ');
+        $(item1).addClass('hover:cursor-pointer ');
+        $(item1).removeClass('text-primary-light ');
+        $(item1).removeClass('hover:text-primary-light ');
+
+        $(item2).addClass('hover:text-primary-light');
+        $(item2).addClass('text-gray-200 ');
+        $(item2).addClass('hover:cursor-pointer ');
+        $(item2).removeClass('text-primary-light ');
+        $(item2).removeClass('hover:text-primary-light ');
     }
 
     // add classes
+    function reset2(item) {
+        $(item).removeClass('hover:text-primary-light');
+        $(item).removeClass('text-gray-200 ');
+        $(item).removeClass('hover:cursor-pointer ');
+        $(item).addClass('text-primary-light ');
+        $(item).addClass('hover:text-primary-light ');
+    }
 </script>
 {% endblock script %}
 {% block content %}
