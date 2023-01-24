@@ -228,7 +228,7 @@ class SocialAuthUsersocialauth(models.Model):
 
 
 class WimhElectricity(models.Model):
-    # auto_id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
+    # id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
     tijdstip = models.DateTimeField()
     switch = models.IntegerField()
     serialmeter = models.CharField(db_column='serialMeter', max_length=15)  # Field name made lowercase.
