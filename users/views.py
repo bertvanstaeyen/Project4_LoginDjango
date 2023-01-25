@@ -9,9 +9,25 @@ from django.contrib.auth.decorators import login_required
 from .forms import RegisterForm, LoginForm, UpdateUserForm, UpdateProfileForm
 from .forms import SetPasswordForm
 
+from .models import Profile
+
 @login_required
-def home(request):
-    return render(request, 'users/home.html')
+def homeDay(request):
+    user = request.user
+    profile = Profile.objects.get(user=user)
+    return render(request, 'users/home-day.html', {'serialNumber': profile.serialNumber})
+
+@login_required
+def homeWeek(request):
+    user = request.user
+    profile = Profile.objects.get(user=user)
+    return render(request, 'users/home-week.html', {'serialNumber': profile.serialNumber})
+
+@login_required
+def homeMonth(request):
+    user = request.user
+    profile = Profile.objects.get(user=user)
+    return render(request, 'users/home-month.html', {'serialNumber': profile.serialNumber})
 
 def help(request):
     return render(request, 'users/help.html')

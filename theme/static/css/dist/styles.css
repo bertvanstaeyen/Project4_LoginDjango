@@ -1535,6 +1535,14 @@ select{
   cursor: pointer;
 }
 
+.hover\:cursor-default:hover{
+  cursor: default;
+}
+
+.hover\:cursor-auto:hover{
+  cursor: auto;
+}
+
 .hover\:bg-success-100:hover{
   --tw-bg-opacity: 1;
   background-color: rgb(220 252 231 / var(--tw-bg-opacity));

@@ -31,91 +31,8 @@
     <title>{% block title %} {% endblock %} </title>
 </head>
 <body>
-  <!-- NAVBAR -->
-  {% if "/logout/" not in request.path and "/login/" not in request.path and "/register/" not in request.path and "/password-reset/" not in request.path %}
-  <nav class="bg-darker-800 sm:px-4 py-2.5 w-screen fixed top-0 left-0 z-50">
-    <div class="container flex flex-wrap items-center justify-between mx-auto">
-      <div class="flex items-center ml-4 text-sm font-medium">
-        {% if user.is_authenticated %}
-        <a href="/">
-          <img src="./../../../media/assets/logo_light_color.png" class="h-4 mr-6 hover:brightness-200 hover:saturate-0" alt="Logo" />
-        </a>
-        <a href="/" class="block ml-6 py-2 text-gray-200 hover:text-primary-light">
-          Home
-        </a>
-        {% else %}
-        <img src="./../../../media/assets/logo_light_color.png" class="h-4 mr-6" alt="Logo" />
-        <p class="text-gray-300 font-light">-</p>
-        <p class="block ml-6 py-2  text-gray-300">Energy Monitoring</p>
-        {% endif %}
-      </div>
 
-      {% if request.path == "/" %}
-      <div>
-        <ul class="mr-4 flex flex-col md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
-          <li class="w-20 text-center pt-1 text-primary-light hover:text-primary-light text-sm" id="setDay">
-              Day
-          </li>
-          <li class="w-20 mx-4 text-center pt-1 text-gray-200 hover:text-primary-light text-sm hover:cursor-pointer" id="setWeek">
-              Week
-          </li>
-          <li class="w-20 text-center pt-1 text-gray-200 hover:text-primary-light text-sm hover:cursor-pointer" id="setMonth">
-              Month
-          </li>
-        </ul>
-      </div>
-      {% endif %}
-
-      <div class="flex items-center">
-        <div class="w-full md:block md:w-auto" id="navbar-default">
-
-
-          <ul class="mr-4 flex flex-col md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
-            {% if user.is_authenticated %}
-            <li>
-              <button id="dropdownNavbarButton" data-dropdown-toggle="dropdownNavbar" class="flex items-center text-sm font-medium text-gray-300 rounded-full hover:text-primary-light md:mr-0" type="button">
-                <span class="sr-only">Open user menu</span>
-                <!-- {% if user.profile.avatar.url %}<img class="w-8 h-8 mr-4 rounded-full" src="{{ user.profile.avatar.url }}" alt="user photo"> {% endif %} -->
-                {{user.first_name|default:'Guest'}} {{user.last_name}}
-                <svg class="w-4 h-4 mx-1.5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-              </button>
-              <div id="dropdownNavbar"
-                class=" z-10 hidden font-normal bg-darker-800 divide-y divide-darker-900 rounded-b-lg w-44 shadow-2xl shadow-darker-800/30">
-                <div class="py-1">
-                  <a href="/" class="block px-4 py-2 text-sm font-semibold text-gray-200 hover:text-primary-light"><i class="fas fa-home mr-2"></i>Home</a>
-                </div>
-                <ul class="py-1 text-sm" aria-labelledby="dropdownLargeButton">
-                  <li>
-                    <a href="{% url 'users-profile' %}" class="block px-4 py-2 text-gray-200 hover:text-primary-light"><i class="fas fa-pen mr-2"></i>Edit Profile</a>
-                  </li>
-                  <li>
-                    <a href="{% url 'password_change' %}" class="block px-4 py-2 text-gray-200 hover:text-primary-light"><i class="fas fa-key mr-2"></i>Change Password</a>
-                  </li>
-                  <li>
-                    <a href="{% url 'users-help' %}" class="block px-4 py-2 text-gray-200 hover:text-primary-light"><i class="fas fa-question mr-2"></i>Help</a>
-                  </li>
-                </ul>
-                <div class="py-1">
-                  <a href="{% url 'logout' %}" id="logoutButton" class="block px-4 py-2 text-sm text-gray-200 hover:text-primary-light"><i class="fas fa-sign-out-alt mr-2"></i>Sign out</a>
-                </div>
-              </div>
-            </li>
-            {% else %}
-
-            <li>
-              <a href="{% url 'login' %}" class="block px-4 py-2 text-gray-200 hover:text-primary-light"><i class="fas fa-chevron-right mr-2"></i>Login</a>
-            </li>
-            <li>
-              <a href="{% url 'users-register' %}" class="block px-4 py-2 text-gray-200 hover:text-primary-light"><i class="fas fa-chevron-right mr-2"></i>Register</a>
-            </li>
-
-            {% endif %}
-          </ul>
-        </div>
-      </div>
-    </div>
-  </nav>
-  {% endif %}
+  {% include 'users/navbar.html' %}
 
   <!-- MAIN -->
   <div class="container mx-auto mt-8">
@@ -175,12 +92,14 @@
 
     <!-- SCRIPT -->
     <script>
-      // REMOVE SELECTION QLIK ON LOGOUT
-      $('#logoutButton').click(() => {
-        console.log('Logged out, Goodbye!')
-        //TODO: Code Ferre
+      // // REMOVE SELECTION QLIK ON LOGOUT
+      // $('#logoutButton').click(() => {
+      //   console.log('Logged out, Goodbye!')
+      //   var app = qlik.openApp('0a2c5296-4c73-44ea-af57-fcf1232452bf', config);
+      //   app.field("serialMeter").unlock();
+      //   app.field("serialMeter").selectValues([], false, true);
         
-      });
+      // });
     </script>
 
   </div>
