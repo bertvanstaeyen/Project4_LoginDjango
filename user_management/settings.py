@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
 ]
 
+# this is needed for generation the jwt token for our authentication system
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -59,6 +60,7 @@ REST_FRAMEWORK = {
 
 TAILWIND_APP_NAME = 'theme'
 
+# ip address for running localhost
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
@@ -80,6 +82,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'user_management.urls'
 
+# these are all of our prebuild templates used in out application
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -99,12 +102,14 @@ TEMPLATES = [
     },
 ]
 
+"refers to the wsgi page in the user management folder"
 WSGI_APPLICATION = 'user_management.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
+# our databse connection
+# the commented code is for testing on localhost and the uncommented is our connection with the azure database
 DATABASES = {
 #   'default': {
 #       'ENGINE': 'django.db.backends.sqlite3',
@@ -139,6 +144,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# this is as an extra where we can login with github or google but this is not yet implemented
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.github.GithubOAuth2',
     'social_core.backends.google.GoogleOAuth2',

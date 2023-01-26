@@ -10,6 +10,8 @@ from users.views import CustomLoginView, ResetPasswordView, ChangePasswordView
 
 from users.forms import LoginForm
 
+# Here we define all the url's in the application
+# We give the template with the route, so it knows which page it needs to show
 urlpatterns = [
     path('admin/', admin.site.urls),
 
