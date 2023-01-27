@@ -1,4 +1,6 @@
 {% extends "users/base.html" %}
+{% load static %}
+
 {% block title %} Login Page {% endblock title%}
 {% block content %}
     <style>
@@ -95,7 +97,7 @@
             </form>
         </div>
         <div class="hidden lg:block relative">
-            <img class="center-img absolute top-4" src="../../../media/assets/logo_light_color.png" alt="">
+            <img class="center-img absolute top-4" src="{% static 'logo_light_color.png'%}" alt="">
             <h3 class="absolute bottom-8 w-full text-center mt-4 text-primary-normal font-bold text-xl">Energy Monitoring</h3>
         </div>
     </div>

@@ -30,7 +30,7 @@ CSRF_TRUSTED_ORIGINS = ['http://localhost', 'http://127.0.0.1', "https://energya
 SECRET_KEY = 'django-insecure-y8e&63vxz6j(dkyu(0&=wf_!)60sjg18^i#j&3=%cjmjae%_#+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
@@ -181,7 +181,8 @@ LOGIN_URL = 'login'
 STATIC_URL = 'theme/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'theme/static')
+    os.path.join(BASE_DIR, 'theme/static'),
+    os.path.join(BASE_DIR, 'media/assets'),
     # of
     # BASE_DIR / 'static'
 ]
