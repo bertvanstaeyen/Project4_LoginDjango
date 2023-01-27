@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, Pass
 from django.core.exceptions import ValidationError
 from social_core.backends import username
 
-from .models import Profile
+from .models import Profile, SerialNumber
 
 
 class SetPasswordForm(PasswordChangeForm):
@@ -47,13 +47,6 @@ class RegisterForm(UserCreationForm):
                                                                   'id': 'password',
                                                                   }))
 
-    serialNumber = forms.CharField(max_length=50,
-                            required=True,
-                            widget=forms.TextInput(attrs={'placeholder': 'Serial Number',
-                                                              'class': 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-normal focus:border-primary-normal block w-full p-2.5',
-                                                              'id': 'serialNumber',
-                                                              }))
-
     def clean_email(self):
          email = self.cleaned_data['email']
          if User.objects.filter(email=email).exists():
@@ -68,8 +61,28 @@ class RegisterForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2', 'serialNumber']
+        fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2']
 
+class SerialNumberForm(forms.ModelForm):
+    
+    name = forms.CharField(max_length=50,
+                            required=True,
+                            widget=forms.TextInput(attrs={'placeholder': 'Name',
+                                                              'class': 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-normal focus:border-primary-normal block w-full p-2.5',
+                                                              'id': 'serialNumber',
+                                                              }))
+
+
+    serialNumber = forms.CharField(max_length=50,
+                            required=True,
+                            widget=forms.TextInput(attrs={'placeholder': 'Serial Number',
+                                                              'class': 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-normal focus:border-primary-normal block w-full p-2.5',
+                                                              'id': 'serialNumber',
+                                                              }))
+    
+    class Meta:
+        model = SerialNumber
+        fields = ["serialNumber", "name"]
 
 class LoginForm(AuthenticationForm):
     username = forms.CharField(max_length=100,
@@ -127,6 +140,6 @@ class UpdateProfileForm(forms.ModelForm):
                                                                  'id': 'serialNumber',
                                                                  }))
     class Meta:
-        model = Profile
+        model = SerialNumber
         # fields = ['avatar', 'serialNumber']
-        fields = ['serialNumber']
+        fields = ['serialNumber', 'name']

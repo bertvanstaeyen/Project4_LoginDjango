@@ -5,10 +5,8 @@ from django.contrib.auth.models import User
 
 # Extending User Model Using a One-To-One Link
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     # avatar = models.ImageField(default='default.jpg', upload_to='profile_images')
-    serialNumber = models.CharField(max_length=50, null=True, blank=True)
-
     def __str__(self):
         return self.user.username
 
@@ -16,19 +14,13 @@ class Profile(models.Model):
     def save(self, *args, **kwargs):
         super().save()
 
-        # img = Image.open(self.avatar.path)
+class SerialNumber(models.Model):
+    owner = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50, null=True, blank=True)
+    serialNumber = models.CharField(max_length=50, unique=True)
 
-        # if img.height > 100 or img.width > 100:
-        #     new_img = (100, 100)
-        #     img.thumbnail(new_img)
-        #     img.save(self.avatar.path)
-
-# class SerialNumber(models.Model):
-#     user = models.ForeignKey(User, on_delete=models.CASCADE)
-#     serialNumber = models.CharField(max_length=50)
-
-#     def __str__(self):
-#         return self.user.username
+    def __str__(self):
+        return self.serialNumber
 
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=150)

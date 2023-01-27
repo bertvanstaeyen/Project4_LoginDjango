@@ -6,7 +6,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.views import View
 from django.contrib.auth.decorators import login_required
 
-from .forms import RegisterForm, LoginForm, UpdateUserForm, UpdateProfileForm
+from .forms import RegisterForm, LoginForm, UpdateUserForm, UpdateProfileForm, SerialNumberForm
 from .forms import SetPasswordForm
 
 from .models import Profile
@@ -14,26 +14,44 @@ from .models import Profile
 @login_required
 def homeDay(request):
     user = request.user
-    profile = Profile.objects.get(user=user)
-    return render(request, 'users/home-day.html', {'serialNumber': profile.serialNumber})
+    return render(request, 'users/home-day.html', {'username': user.username})
 
 @login_required
 def homeWeek(request):
     user = request.user
-    profile = Profile.objects.get(user=user)
-    return render(request, 'users/home-week.html', {'serialNumber': profile.serialNumber})
+    return render(request, 'users/home-week.html', {'username': user.username})
 
 @login_required
 def homeMonth(request):
     user = request.user
-    profile = Profile.objects.get(user=user)
-    return render(request, 'users/home-month.html', {'serialNumber': profile.serialNumber})
+    return render(request, 'users/home-month.html', {'username': user.username})
+
+@login_required
+def serialNumber(request):
+    
+    # user = request.user
+    # profile = user.profile
+    # numbers = profile.serialnumber_set.all()
+    # for number in numbers:
+    #     print(number.id)
+
+    if request.method == 'POST':
+        form = SerialNumberForm(data=request.POST)
+        if form.is_valid():
+            print('valid')
+            new_serialnumber = form.save(commit=False)
+            new_serialnumber.owner_id = request.user.id
+            new_serialnumber.save()
+        else:
+            for error in list(form.errors.values()):
+                messages.error(request, error)
+
+    return render(request, 'users/crud-serial-number.html', {'form': SerialNumberForm()})
 
 def help(request):
     return render(request, 'users/help.html')
 
 class RegisterView(View):
-    form_class = RegisterForm
     initial = {'key': 'value'}
     template_name = 'users/register.html'
 
@@ -46,21 +64,26 @@ class RegisterView(View):
         return super(RegisterView, self).dispatch(request, *args, **kwargs)
 
     def get(self, request, *args, **kwargs):
-        form = self.form_class(initial=self.initial)
-        return render(request, self.template_name, {'form': form})
+        # form = self.form_class(initial=self.initial)
+        serialNumberForm = SerialNumberForm(initial=self.initial)
+        registerForm = RegisterForm(initial=self.initial)
+        return render(request, self.template_name, {'SerialForm': serialNumberForm, "RegisterForm": registerForm})
 
     def post(self, request, *args, **kwargs):
-        form = self.form_class(request.POST)
 
-        if form.is_valid():
-            form.save()
+        serialNumberForm = SerialNumberForm(request.POST)
+        registerForm = RegisterForm(request.POST)
 
-            username = form.cleaned_data.get('username')
+        if serialNumberForm.is_valid() and registerForm.is_valid():
+            registerForm.save()
+            serialNumberForm.save()
+
+            username = registerForm.cleaned_data.get('username')
             messages.success(request, f'Account created for {username}')
 
             return redirect(to='login')
 
-        return render(request, self.template_name, {'form': form})
+        return render(request, self.template_name, {'SerialForm': serialNumberForm, "RegisterForm": registerForm})
 
 
 # Class based view that extends from the built in login view to add a remember me functionality

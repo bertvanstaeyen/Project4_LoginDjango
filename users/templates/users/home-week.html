@@ -59,7 +59,7 @@ login().then(() => {
 
 	//open apps -- inserted here --
 	var app = qlik.openApp('0a2c5296-4c73-44ea-af57-fcf1232452bf', config);
-    app.field("serialMeter").selectValues(["{{serialNumber}}"], false, true);
+    app.field("serialMeter").selectValues(["{{username}}"], false, true);
     app.field("serialMeter").lock();
 
     
