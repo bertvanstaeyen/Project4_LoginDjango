@@ -50,7 +50,8 @@ def serialNumber(request):
 
     context = {
         'form': SerialNumberForm(),
-        'startMessage': False
+        'startMessage': False,
+        'serial': numbers,
     }
 
     if len(numbers) < 1:
