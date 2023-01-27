@@ -20,14 +20,14 @@
       {% if "/day/" in request.path or "/week/" in request.path or "/month/" in request.path %}
       <div>
         <ul class="mr-4 flex flex-col md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
-          <li {% if 'day' in request.path %}class="w-20 text-center pt-1 text-sm text-primary-light hover:text-primary-light hover:cursor-pointer"{% else %}class="w-20 text-center pt-1 text-sm text-gray-200 hover:text-primary-light"{% endif %} 
+          <li {% if 'day' in request.path %}class="w-20 text-center pt-1 text-sm text-primary-normal hover:text-primary-normal hover:cursor-pointer"{% else %}class="w-20 text-center pt-1 text-sm text-gray-200 hover:text-primary-light"{% endif %} 
            id="setDay">
               <a href="{% url 'users-home-day' %}">Day</a>
           </li>
-          <li {% if 'week' in request.path %}class="w-20 text-center pt-1 text-sm text-primary-light hover:text-primary-light hover:cursor-pointer"{% else %}class="w-20 text-center pt-1 text-sm text-gray-200 hover:text-primary-light"{% endif %} id="setWeek">
+          <li {% if 'week' in request.path %}class="w-20 text-center pt-1 text-sm text-primary-normal hover:text-primary-normal hover:cursor-pointer"{% else %}class="w-20 text-center pt-1 text-sm text-gray-200 hover:text-primary-light"{% endif %} id="setWeek">
               <a href="{% url 'users-home-week' %}">Week</a>
           </li>
-          <li {% if 'month' in request.path %}class="w-20 text-center pt-1 text-sm text-primary-light hover:text-primary-light hover:cursor-pointer"{% else %}class="w-20 text-center pt-1 text-sm text-gray-200 hover:text-primary-light"{% endif %} id="setMonth">
+          <li {% if 'month' in request.path %}class="w-20 text-center pt-1 text-sm text-primary-normal hover:text-primary-normal hover:cursor-pointer"{% else %}class="w-20 text-center pt-1 text-sm text-gray-200 hover:text-primary-light"{% endif %} id="setMonth">
               <a href="{% url 'users-home-month' %}">Month</a>
           </li>
         </ul>
@@ -53,6 +53,9 @@
                   <a href="/" class="block px-4 py-2 text-sm font-semibold text-gray-200 hover:text-primary-light"><i class="fas fa-home mr-2"></i>Home</a>
                 </div>
                 <ul class="py-1 text-sm" aria-labelledby="dropdownLargeButton">
+                  <li>
+                    <a href="{% url 'users-serial-number' %}" class="block px-4 py-2 text-gray-200 hover:text-primary-light"><i class="fas fa-pen mr-2"></i>Manage Meters</a>
+                  </li>
                   <li>
                     <a href="{% url 'users-profile' %}" class="block px-4 py-2 text-gray-200 hover:text-primary-light"><i class="fas fa-pen mr-2"></i>Edit Profile</a>
                   </li>

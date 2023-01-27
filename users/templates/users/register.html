@@ -77,24 +77,24 @@
                 <div class="">
                     <div class="mb-2 mt-6">
                         <label class="block mb-2 text-sm font-medium text-gray-700">First Name</label>
-                        {{ form.first_name }}
+                        {{ RegisterForm.first_name }}
                     </div>
                     <div class="mb-2 mt-6">
                         <div class="form-group">
                             <label class="block mb-2 text-sm font-medium text-gray-700">Last Name</label>
-                            {{ form.last_name }}
+                            {{ RegisterForm.last_name }}
                         </div>
                     </div>
                     <div class="mb-2 mt-6">
                         <div class="form-group">
                             <label class="block mb-2 text-sm font-medium text-gray-700">Username</label>
-                            {{ form.username }}
+                            {{ RegisterForm.username }}
                         </div>
                     </div>
                     <div class="mb-2 mt-6">
                         <div class="form-group">
                             <label class="block mb-2 text-sm font-medium text-gray-700"><i class="fas fa-info-circle" data-tooltip-target="tooltip-serial-number"></i> Serial Number</label>
-                            {{ form.serialNumber }}
+                            {{ SerialForm.serialNumber }}
                         </div>
                         <div id="tooltip-serial-number" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-darker-900 transition-opacity duration-300 bg-white rounded-lg shadow-sm opacity-0 tooltip">
                             Your Meter RM and <span class="font-bold">Serial Number</span> are printed on the front of your meter. <br/> Example: <span class="font-bold">41053319</span>.
@@ -107,20 +107,20 @@
                     <div class="mb-2 mt-6">
                         <div class="form-group">
                             <label class="block mb-2 text-sm font-medium text-gray-700">Email</label>
-                            {{ form.email }}
+                            {{ RegisterForm.email }}
                         </div>
                     </div>
                     <div class="mb-2 mt-6">
                         <div class="form-group">
                             <label class="block mb-2 text-sm font-medium text-gray-700">Password</label>
-                            {{ form.password1 }}
-                            {{ form.errors.password }}
+                            {{ RegisterForm.password1 }}
+                            {{ RegisterForm.errors.password }}
                         </div>
                     </div>
                     <div class="mb-2 mt-6">
                         <div class="form-group">
                             <label class="block mb-2 text-sm font-medium text-gray-700">Confirm Password</label>
-                            {{ form.password2 }}
+                            {{ RegisterForm.password2 }}
                         </div>
                     </div>
                 </div>

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
 from pathlib import Path
+from django.core.management.utils import get_random_secret_key
 
 # To keep secret keys in environment variables
 from dotenv import load_dotenv
@@ -20,18 +21,18 @@ load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+CSRF_TRUSTED_ORIGINS = ['http://localhost', 'http://127.0.0.1', "https://energyapplicationproject4.azurewebsites.net/", "http://127.0.0.1:8000", 'http://localhost:8000']
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = str(os.getenv('SECRET_KEY'))
+SECRET_KEY = 'django-insecure-y8e&63vxz6j(dkyu(0&=wf_!)60sjg18^i#j&3=%cjmjae%_#+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
-
 
 # Application definition
 
@@ -106,19 +107,19 @@ WSGI_APPLICATION = 'user_management.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-#   'default': {
-#       'ENGINE': 'django.db.backends.sqlite3',
-#       'NAME': BASE_DIR / 'db.sqlite3',
-#   }
-    'default': {
-            'ENGINE': 'mssql',
-            'NAME': str(os.getenv('name')),
-            'USER': str(os.getenv('user')),
-            'PASSWORD': str(os.getenv('password')),
-            'HOST': str(os.getenv('host')),
-            'PORT': '1433',
-            'OPTIONS': {'driver': 'ODBC Driver 18 for SQL Server'},
-            }
+  'default': {
+      'ENGINE': 'django.db.backends.sqlite3',
+      'NAME': BASE_DIR / 'db.sqlite3',
+  }
+    # 'default': {
+    #         'ENGINE': 'mssql',
+    #         'NAME': str(os.getenv('name')),
+    #         'USER': str(os.getenv('user')),
+    #         'PASSWORD': str(os.getenv('password')),
+    #         'HOST': str(os.getenv('host')),
+    #         'PORT': '1433',
+    #         'OPTIONS': {'driver': 'ODBC Driver 18 for SQL Server'},
+    #         }
 }
 
 # Password validation
