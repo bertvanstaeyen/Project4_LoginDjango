@@ -63,7 +63,11 @@ def serialNumber(request):
             new_serialnumber = form.save(commit=False)
             new_serialnumber.owner_id = request.user.id
             new_serialnumber.save()
-            return redirect(to='/serialNumbers/')
+            messages.success(request, f'Successfully added meter!')
+            if context['startMessage']:
+                return redirect(to='/day/')
+            else:
+                return redirect(to='/serialNumbers/')
         else:
             for error in list(form.errors.values()):
                 messages.error(request, error)
@@ -164,11 +168,11 @@ def profile(request):
         user_form = UpdateUserForm(request.POST, instance=request.user)
         # profile_form = UpdateProfileForm(request.POST, request.FILES, instance=request.user.profile)
 
-        if user_form.is_valid() and profile_form.is_valid():
+        if user_form.is_valid():
             user_form.save()
             messages.success(request, 'Your profile is updated successfully')
             return redirect(to='users-profile')
     else:
         user_form = UpdateUserForm(instance=request.user)
 
-    return render(request, 'users/profile.html', {'user_form': user_form, 'profile_form': profile_form})
+    return render(request, 'users/profile.html', {'user_form': user_form})

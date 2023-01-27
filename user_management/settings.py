@@ -30,7 +30,7 @@ CSRF_TRUSTED_ORIGINS = ['http://localhost', 'http://127.0.0.1', "https://energya
 SECRET_KEY = 'django-insecure-y8e&63vxz6j(dkyu(0&=wf_!)60sjg18^i#j&3=%cjmjae%_#+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
