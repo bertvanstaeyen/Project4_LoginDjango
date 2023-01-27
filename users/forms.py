@@ -130,16 +130,16 @@ class UpdateUserForm(forms.ModelForm):
         fields = ['username', 'email']
 
 
-class UpdateProfileForm(forms.ModelForm):
-    # avatar = forms.ImageField(widget=forms.FileInput(attrs={'class': 'block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none'}))
+# class UpdateProfileForm(forms.ModelForm):
+#     # avatar = forms.ImageField(widget=forms.FileInput(attrs={'class': 'block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none'}))
 
-    serialNumber = forms.CharField(max_length=50,
-                                   required=True,
-                                   widget=forms.TextInput(attrs={'placeholder': 'Serial Number',
-                                                                 'class': 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-normal focus:border-primary-normal block w-full p-2.5',
-                                                                 'id': 'serialNumber',
-                                                                 }))
-    class Meta:
-        model = SerialNumber
-        # fields = ['avatar', 'serialNumber']
-        fields = ['serialNumber', 'name']
+#     serialNumber = forms.CharField(max_length=50,
+#                                    required=True,
+#                                    widget=forms.TextInput(attrs={'placeholder': 'Serial Number',
+#                                                                  'class': 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-normal focus:border-primary-normal block w-full p-2.5',
+#                                                                  'id': 'serialNumber',
+#                                                                  }))
+#     class Meta:
+#         model = SerialNumber
+#         # fields = ['avatar', 'serialNumber']
+#         fields = ['serialNumber', 'name']
