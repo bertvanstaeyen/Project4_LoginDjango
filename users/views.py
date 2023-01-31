@@ -1,15 +1,17 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.contrib.auth.views import LoginView, PasswordResetView, PasswordChangeView
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views import View
 from django.contrib.auth.decorators import login_required
 
-from .forms import RegisterForm, LoginForm, UpdateUserForm, SerialNumberForm
+from .forms import RegisterForm, LoginForm, UpdateUserForm, SerialNumberForm, UpdateMeterNameForm
 from .forms import SetPasswordForm
 
-from .models import Profile
+from .models import Profile, SerialNumber, WimhElectricity
+
 
 @login_required
 def homeDay(request):
@@ -21,6 +23,7 @@ def homeDay(request):
     else:
         return redirect(to='/serialNumbers/')
 
+
 @login_required
 def homeWeek(request):
     user = request.user
@@ -30,6 +33,7 @@ def homeWeek(request):
         return render(request, 'users/home-week.html', {'username': user.username})
     else:
         return redirect(to='/serialNumbers/')
+
 
 @login_required
 def homeMonth(request):
@@ -41,9 +45,9 @@ def homeMonth(request):
     else:
         return redirect(to='/serialNumbers/')
 
+
 @login_required
 def serialNumber(request):
-    
     user = request.user
     profile = user.profile
     numbers = profile.serialnumber_set.all()
@@ -75,8 +79,22 @@ def serialNumber(request):
 
     return render(request, 'users/crud-serial-number.html', context)
 
+
+def updateMeterName(request, id):
+    serial = SerialNumber.objects.filter(id=id).first()
+    if request.method == "POST":
+        form = UpdateMeterNameForm(request.POST, instance=serial)
+        if form.is_valid():
+            serial.save()
+            messages.success(request, f'Successfully changed meter name!')
+        else:
+            messages.error(request, f'Oops, something went wrong!')
+    return render(request, 'users/crud-serial-number.html')
+
+
 def help(request):
     return render(request, 'users/help.html')
+
 
 class RegisterView(View):
     initial = {'key': 'value'}
@@ -109,7 +127,7 @@ class RegisterView(View):
         else:
             for error in list(registerForm.errors.values()):
                 messages.error(request, error)
-    
+
         return render(request, self.template_name, {"RegisterForm": registerForm})
 
 
@@ -140,6 +158,7 @@ class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
                       " If you don't receive an email, " \
                       "please make sure you've entered the address you registered with, and check your spam folder."
     success_url = reverse_lazy('users-home')
+
 
 # class ChangePasswordView(SuccessMessageMixin, PasswordChangeView):
 #     template_name = 'users/change_password.html'
@@ -177,3 +196,25 @@ def profile(request):
         user_form = UpdateUserForm(instance=request.user)
 
     return render(request, 'users/profile.html', {'user_form': user_form})
+
+
+#   check if serial belongs to logged in user before delete.
+@login_required()
+def deleteSerialNumber(request, id):
+    serialId = SerialNumber.objects.filter(id=id).first()
+    if request.method == "POST":
+        serialId.delete()
+        print("deleted: " + serialId.name)
+    return render(request, 'users/crud-serial-number.html')
+
+
+@login_required()
+def deleteSerialNumberWithData(request, id):
+    serialId = SerialNumber.objects.filter(id=id).first()
+    data = WimhElectricity.objects.filter(serialmeter__exact=serialId.serialNumber)
+    if request.method == "POST":
+        for meter in data:
+            meter.delete()
+        serialId.delete()
+
+    return render(request, 'users/crud-serial-number.html')
