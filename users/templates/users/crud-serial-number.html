@@ -6,8 +6,7 @@
 {% block script %}
     <script>
         $('.deletemeter').click(function () {
-            console.log("noice")
-            console.log($(this).data('number'))
+            serialID = $(this).data('number')
 
 
             $.confirm({
@@ -21,14 +20,21 @@
                 buttons: {
                     DeleteMeter: {
                         text: 'Delete',
+                        escapeKey: 'cancel',
                         btnClass: 'btn-red',
                         keys: ['enter', 'shift'],
                         action: function () {
-                            //IETS
+                            $.post({
+                                url: "/serialNumbers/Delete/" + serialID,
+                                data: {csrfmiddlewaretoken: '{{ csrf_token }}'}
+                            }).done(function () {
+                                location.reload()
+                            })
                         }
                     },
                     DeleteMeterWithData: {
                         text: 'Delete with data',
+                        escapeKey: 'cancel',
                         btnClass: 'btn-red',
                         keys: ['enter', 'shift'],
                         action: function () {
@@ -43,16 +49,66 @@
                                 buttons: {
                                     DeleteMeter: {
                                         text: 'Yes',
+                                        escapeKey: 'cancel',
                                         btnClass: 'btn-red',
                                         keys: ['enter', 'shift'],
                                         action: function () {
-                                            //IETS
+                                            $.post({
+                                                url: "/serialNumbers/DeleteWithData/" + serialID,
+                                                data: {csrfmiddlewaretoken: '{{ csrf_token }}'}
+                                            }).done(function () {
+                                                location.reload()
+                                            })
                                         }
                                     },
                                     cancel: function () {
                                     },
                                 }
                             });
+                        }
+                    },
+                    cancel: function () {
+                    },
+                }
+            });
+
+        })
+        $('.editmeter').click(function () {
+            serialID = $(this).data('number')
+
+
+            $.confirm({
+                draggable: false,
+                escapeKey: 'cancel',
+                closeIcon: true,
+                useBootstrap: false,
+                type: 'dark',
+                title: 'Change name of meter',
+                content: '' +
+                    '<form method="put">' +
+                    '{% csrf_token %}' +
+                    '<div class="mb-6 mt-6">' +
+                    '<label class="block mb-2 text-sm font-medium text-gray-900">Name: <span class="text-gray-500 font-light">To what do you want to rename the meter?</span></label>' +
+                    '<input type="text" placeholder="New Name" class="name shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-normal focus:border-primary-normal block w-full p-2.5" required />' +
+                    '</div>' +
+                    '</form>',
+                buttons: {
+                    formSubmit: {
+                        text: 'Submit',
+                        btnClass: 'btn-dark',
+                        action: function () {
+                            var name = this.$content.find('.name').val();
+                            if (!name) {
+                                $.alert('provide a valid name');
+                                return false;
+                            } else {
+                                $.post({
+                                    url: "/serialNumbers/updateMeterName/" + serialID,
+                                    data: {csrfmiddlewaretoken: '{{ csrf_token }}', name:name}
+                                }).done(function () {
+                                    location.reload()
+                                })
+                            }
                         }
                     },
                     cancel: function () {
@@ -146,6 +202,8 @@
                                  style="margin-bottom: 4px">
                                 <p>{{ number.name }} : {{ number.serialNumber }}</p>
                                 <div>
+                                    <i class="fas fa-pencil-alt text-gray-500 h-fit hover:cursor-pointer editmeter mr-2"
+                                       data-number="{{ number.id }}"></i>
                                     <i class="fas fa-trash text-red-500 h-fit hover:cursor-pointer deletemeter"
                                        data-number="{{ number.id }}"></i>
                                 </div>

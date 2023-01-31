@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "jquery": "^3.6.3",
     "jquery-confirm": "^3.3.4"
   }
 }

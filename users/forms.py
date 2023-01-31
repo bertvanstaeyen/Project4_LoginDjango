@@ -48,10 +48,10 @@ class RegisterForm(UserCreationForm):
                                                                   }))
 
     def clean_email(self):
-         email = self.cleaned_data['email']
-         if User.objects.filter(email=email).exists():
-             raise ValidationError("Email already exists")
-         return email
+        email = self.cleaned_data['email']
+        if User.objects.filter(email=email).exists():
+            raise ValidationError("Email already exists")
+        return email
 
     def clean_username(self):
         user = self.cleaned_data['username']
@@ -63,26 +63,26 @@ class RegisterForm(UserCreationForm):
         model = User
         fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2']
 
-class SerialNumberForm(forms.ModelForm):
-    
-    name = forms.CharField(max_length=50,
-                            required=True,
-                            widget=forms.TextInput(attrs={'placeholder': 'Name',
-                                                              'class': 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-normal focus:border-primary-normal block w-full p-2.5',
-                                                              'id': 'serialNumber',
-                                                              }))
 
+class SerialNumberForm(forms.ModelForm):
+    name = forms.CharField(max_length=50,
+                           required=True,
+                           widget=forms.TextInput(attrs={'placeholder': 'Name',
+                                                         'class': 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-normal focus:border-primary-normal block w-full p-2.5',
+                                                         'id': 'serialNumber',
+                                                         }))
 
     serialNumber = forms.CharField(max_length=50,
-                            required=True,
-                            widget=forms.TextInput(attrs={'placeholder': 'Serial Number',
-                                                              'class': 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-normal focus:border-primary-normal block w-full p-2.5',
-                                                              'id': 'serialNumber',
-                                                              }))
-    
+                                   required=True,
+                                   widget=forms.TextInput(attrs={'placeholder': 'Serial Number',
+                                                                 'class': 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-normal focus:border-primary-normal block w-full p-2.5',
+                                                                 'id': 'serialNumber',
+                                                                 }))
+
     class Meta:
         model = SerialNumber
         fields = ["serialNumber", "name"]
+
 
 class LoginForm(AuthenticationForm):
     username = forms.CharField(max_length=100,
@@ -94,24 +94,26 @@ class LoginForm(AuthenticationForm):
                                required=True,
                                widget=forms.PasswordInput(attrs={'placeholder': 'Password',
                                                                  'class': 'shadow-sm border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-normal focus:border-primary-normal block w-full p-2.5',
-                                                                #  'data-toggle': 'password',
+                                                                 #  'data-toggle': 'password',
                                                                  'id': 'password',
                                                                  'name': 'password',
                                                                  }))
-    remember_me = forms.BooleanField(required=False, widget=forms.CheckboxInput( attrs={"id":"rememberme", "name":"rememberme", "class": "w-4 h-4 text-primary-normal bg-gray-100 border-gray-300 rounded focus:ring-primary-normal focus:ring-2 mr-2"}))
-
+    remember_me = forms.BooleanField(required=False, widget=forms.CheckboxInput(
+        attrs={"id": "rememberme", "name": "rememberme",
+               "class": "w-4 h-4 text-primary-normal bg-gray-100 border-gray-300 rounded focus:ring-primary-normal focus:ring-2 mr-2"}))
 
     def clean_email(self):
-         email = self.cleaned_data['email']
-         if User.objects.filter(email=email).exists():
-             raise ValidationError("Email already exists")
-         return email
+        email = self.cleaned_data['email']
+        if User.objects.filter(email=email).exists():
+            raise ValidationError("Email already exists")
+        return email
 
     def clean_username(self):
         user = self.cleaned_data['username']
         if User.objects.filter(username=username).exists():
             raise ValidationError("Username already exists")
         return user
+
     class Meta:
         model = User
         fields = ['username', 'password', 'remember_me']
@@ -120,26 +122,25 @@ class LoginForm(AuthenticationForm):
 class UpdateUserForm(forms.ModelForm):
     username = forms.CharField(max_length=100,
                                required=True,
-                               widget=forms.TextInput(attrs={'class': 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-normal focus:border-primary-normal block w-full p-2.5'}))
+                               widget=forms.TextInput(attrs={
+                                   'class': 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-normal focus:border-primary-normal block w-full p-2.5'}))
     email = forms.EmailField(required=True,
-                             widget=forms.TextInput(attrs={'class': 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-normal focus:border-primary-normal block w-full p-2.5'}))
-    
+                             widget=forms.TextInput(attrs={
+                                 'class': 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-normal focus:border-primary-normal block w-full p-2.5'}))
 
     class Meta:
         model = User
         fields = ['username', 'email']
 
 
-# class UpdateProfileForm(forms.ModelForm):
-#     # avatar = forms.ImageField(widget=forms.FileInput(attrs={'class': 'block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none'}))
+class UpdateMeterNameForm(forms.ModelForm):
+    name = forms.CharField(max_length=50,
+                           required=True,
+                           widget=forms.TextInput(attrs={'placeholder': 'Meter name',
+                                                         'class': 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-normal focus:border-primary-normal block w-full p-2.5',
+                                                         'id': 'serialNumber',
+                                                         }))
 
-#     serialNumber = forms.CharField(max_length=50,
-#                                    required=True,
-#                                    widget=forms.TextInput(attrs={'placeholder': 'Serial Number',
-#                                                                  'class': 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-normal focus:border-primary-normal block w-full p-2.5',
-#                                                                  'id': 'serialNumber',
-#                                                                  }))
-#     class Meta:
-#         model = SerialNumber
-#         # fields = ['avatar', 'serialNumber']
-#         fields = ['serialNumber', 'name']
+    class Meta:
+        model = SerialNumber
+        fields = ['name']
