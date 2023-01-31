@@ -9,9 +9,7 @@ from django.contrib.auth.decorators import login_required
 
 from .forms import RegisterForm, LoginForm, UpdateUserForm, SerialNumberForm, UpdateMeterNameForm
 from .forms import SetPasswordForm
-
 from .models import Profile, SerialNumber, WimhElectricity
-
 
 @login_required
 def homeDay(request):
@@ -68,7 +66,10 @@ def serialNumber(request):
             new_serialnumber = form.save(commit=False)
             new_serialnumber.owner_id = request.user.id
             new_serialnumber.save()
-            messages.success(request, f'Successfully added meter!')
+            if len(WimhElectricity.objects.filter(serialmeter=new_serialnumber.serialNumber)) > 0:
+                messages.success(request, f'Successfully added meter!')
+            else:
+                messages.warning(request, f'Successfully added meter! But no data was found, make sure the device is connected to your Digital Meter')
             if context['startMessage']:
                 return redirect(to='/day/')
             else:
