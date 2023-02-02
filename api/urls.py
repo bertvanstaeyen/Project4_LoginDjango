@@ -6,7 +6,14 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
+# urls for the API
+#
+# Example
+# /api-auth/setData
+#
+# all urls are admin only
 urlpatterns = [
+    # get bearer token for authentication
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
