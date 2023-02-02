@@ -6,7 +6,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from django.contrib.auth import views as auth_views
-from users.views import CustomLoginView, ResetPasswordView, ChangePasswordView
+from users.views import CustomLoginView, ChangePasswordView
 
 from users.forms import LoginForm
 
@@ -23,8 +23,6 @@ urlpatterns = [
                                            authentication_form=LoginForm), name='login'),
 
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
-
-    path('password-reset/', ResetPasswordView.as_view(), name='password_reset'),
 
     path('password-reset-confirm/<uidb64>/<token>/',
          auth_views.PasswordResetConfirmView.as_view(template_name='users/password_reset_confirm.html'),

@@ -1,4 +1,5 @@
 {% extends "users/base.html" %}
+{% load static tailwind_tags %}
 {% block head %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
@@ -99,7 +100,15 @@
                         action: function () {
                             var name = this.$content.find('.name').val();
                             if (!name) {
-                                $.alert('provide a valid name');
+                                $.confirm({
+                                    draggable: false,
+                                    escapeKey: 'cancel',
+                                    closeIcon: true,
+                                    useBootstrap: false,
+                                    type: 'red',
+                                    title: 'Name required',
+                                    content: "Please enter a name for your digital meter.",
+                                });
                                 return false;
                             } else {
                                 $.post({
@@ -194,24 +203,22 @@
                     </div>
                 </div>
             </div>
-            <div class="mt-12 w-full mx-auto">
-                <div class="grid grid-cols-1 gap-10">
-                    <div class="w-full">
-                        {% for number in serial %}
-                            <div class="flex flex-nowrap justify-between p-2 bg-gray-100 rounded-lg"
-                                 style="margin-bottom: 4px">
-                                <p>{{ number.name }} : {{ number.serialNumber }}</p>
-                                <div>
-                                    <i class="fas fa-pencil-alt text-gray-500 h-fit hover:cursor-pointer editmeter mr-2"
-                                       data-number="{{ number.id }}"></i>
-                                    <i class="fas fa-trash text-red-500 h-fit hover:cursor-pointer deletemeter"
-                                       data-number="{{ number.id }}"></i>
-                                </div>
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
         </form>
     </div>
+    <h1 class="text-primary-normal text-center mt-10 mb-6 text-2xl">Meters</h1>
+    <hr >
+    <div class="mt-12 w-11/12 md:w-8/12 lg:w-6/12 mx-auto" style="margin-bottom: 320px;">
+        {% for number in serial %}
+        <div class="flex flex-nowrap justify-between p-2 bg-gray-100 rounded-lg border-2" style="margin-bottom: 8px">
+            <p>{{ number.name | default:'Meter' }} : <span class="text-gray-400">{{ number.serialNumber }}</span></p>
+            <div>
+                <i class="fas fa-edit text-gray-500 h-fit hover:cursor-pointer editmeter mr-2"
+                    data-number="{{ number.id }}"></i>
+                <i class="fas fa-times text-red-500 h-fit hover:cursor-pointer deletemeter"
+                    data-number="{{ number.id }}"></i>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 {% endblock content %}
+
