@@ -9,7 +9,8 @@ from django.contrib.auth.decorators import login_required
 from .forms import RegisterForm, LoginForm, UpdateUserForm, SerialNumberForm
 from .forms import SetPasswordForm
 
-from .models import Profile
+from .models import Profile, SerialNumber
+
 
 @login_required
 def homeDay(request):
@@ -21,6 +22,7 @@ def homeDay(request):
     else:
         return redirect(to='/serialNumbers/')
 
+
 @login_required
 def homeWeek(request):
     user = request.user
@@ -30,6 +32,7 @@ def homeWeek(request):
         return render(request, 'users/home-week.html', {'username': user.username})
     else:
         return redirect(to='/serialNumbers/')
+
 
 @login_required
 def homeMonth(request):
@@ -41,9 +44,9 @@ def homeMonth(request):
     else:
         return redirect(to='/serialNumbers/')
 
+
 @login_required
 def serialNumber(request):
-    
     user = request.user
     profile = user.profile
     numbers = profile.serialnumber_set.all()
@@ -72,11 +75,30 @@ def serialNumber(request):
         else:
             for error in list(form.errors.values()):
                 messages.error(request, error)
+    # elif request.method == 'DELETE':
+    #     serialNumberId = deleteSerialNumberForm(data=request.DELETE)
+    #     SerialNumber.objects.filter(id=serialNumberId).delete()
 
     return render(request, 'users/crud-serial-number.html', context)
 
+
+# @login_required()
+# def delete_serialNumber(request, id):
+#     context = {}
+#     serialId = SerialNumber.objects.filter(id=id).delete()
+#     if request.method == "POST":
+#         # delete object
+#         serialId.delete()
+#         # after deleting redirect to
+#         # home page
+#         return HttpResponseRedirect("/")
+#
+#     return render(request, "delete_view.html", context)
+
+
 def help(request):
     return render(request, 'users/help.html')
+
 
 class RegisterView(View):
     initial = {'key': 'value'}
@@ -109,7 +131,7 @@ class RegisterView(View):
         else:
             for error in list(registerForm.errors.values()):
                 messages.error(request, error)
-    
+
         return render(request, self.template_name, {"RegisterForm": registerForm})
 
 
@@ -140,6 +162,7 @@ class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
                       " If you don't receive an email, " \
                       "please make sure you've entered the address you registered with, and check your spam folder."
     success_url = reverse_lazy('users-home')
+
 
 # class ChangePasswordView(SuccessMessageMixin, PasswordChangeView):
 #     template_name = 'users/change_password.html'

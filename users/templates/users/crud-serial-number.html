@@ -6,8 +6,7 @@
 {% block script %}
     <script>
         $('.deletemeter').click(function () {
-            console.log("noice")
-            console.log($(this).data('number'))
+            serialId = $(this).data('number')
 
 
             $.confirm({
@@ -20,11 +19,12 @@
                 content: "Do you want to delete the meter only or the meter and the meter's data?",
                 buttons: {
                     DeleteMeter: {
-                        text: 'Delete',
+                        text: 'Delete meter',
                         btnClass: 'btn-red',
                         keys: ['enter', 'shift'],
                         action: function () {
-                            //IETS
+                            console.log('test',serialId)
+                            {#views.deleteSerialNumber(serialId)#}
                         }
                     },
                     DeleteMeterWithData: {

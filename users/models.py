@@ -1,11 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
-# from PIL import Image
 
 
-# Extending User Model Using a One-To-One Link
+# Extending User Model Using a One-To-One Link.
+# This is the profile class.
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+
     # avatar = models.ImageField(default='default.jpg', upload_to='profile_images')
     def __str__(self):
         return self.user.username
@@ -14,6 +15,8 @@ class Profile(models.Model):
     def save(self, *args, **kwargs):
         super().save()
 
+
+# This class is made for the serialnumber so this can be changed and saved.
 class SerialNumber(models.Model):
     owner = models.ForeignKey(Profile, on_delete=models.CASCADE)
     name = models.CharField(max_length=50, null=True, blank=True)
@@ -22,6 +25,8 @@ class SerialNumber(models.Model):
     def __str__(self):
         return self.serialNumber
 
+
+# This class is used for authentication.
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=150)
 
@@ -30,6 +35,7 @@ class AuthGroup(models.Model):
         db_table = 'auth_group'
 
 
+# This is auto generated Django code for authentication.
 class AuthGroupPermissions(models.Model):
     id = models.BigAutoField(primary_key=True)
     group = models.ForeignKey(AuthGroup, models.DO_NOTHING)
@@ -41,6 +47,7 @@ class AuthGroupPermissions(models.Model):
         unique_together = (('group', 'permission'),)
 
 
+# This is auto generated Django code for authentication.
 class AuthPermission(models.Model):
     name = models.CharField(max_length=255)
     content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING)
@@ -52,6 +59,7 @@ class AuthPermission(models.Model):
         unique_together = (('content_type', 'codename'),)
 
 
+# This is auto generated Django code for authentication and is used to check the user.
 class AuthUser(models.Model):
     password = models.CharField(max_length=128)
     last_login = models.DateTimeField(blank=True, null=True)
@@ -69,6 +77,7 @@ class AuthUser(models.Model):
         db_table = 'auth_user'
 
 
+# This is auto generated Django code for authentication.
 class AuthUserGroups(models.Model):
     id = models.BigAutoField(primary_key=True)
     user = models.ForeignKey(AuthUser, models.DO_NOTHING)
@@ -80,6 +89,7 @@ class AuthUserGroups(models.Model):
         unique_together = (('user', 'group'),)
 
 
+# This is auto generated Django code for authentication.
 class AuthUserUserPermissions(models.Model):
     id = models.BigAutoField(primary_key=True)
     user = models.ForeignKey(AuthUser, models.DO_NOTHING)
@@ -91,6 +101,7 @@ class AuthUserUserPermissions(models.Model):
         unique_together = (('user', 'permission'),)
 
 
+# This is auto generated Django code for the admin login.
 class DjangoAdminLog(models.Model):
     action_time = models.DateTimeField()
     object_id = models.TextField(blank=True, null=True)
@@ -105,6 +116,7 @@ class DjangoAdminLog(models.Model):
         db_table = 'django_admin_log'
 
 
+# This is auto generated Django code for content types.
 class DjangoContentType(models.Model):
     app_label = models.CharField(max_length=100)
     model = models.CharField(max_length=100)
@@ -115,6 +127,7 @@ class DjangoContentType(models.Model):
         unique_together = (('app_label', 'model'),)
 
 
+# This is auto generated Django code for the migrations.
 class DjangoMigrations(models.Model):
     id = models.BigAutoField(primary_key=True)
     app = models.CharField(max_length=255)
@@ -126,6 +139,7 @@ class DjangoMigrations(models.Model):
         db_table = 'django_migrations'
 
 
+# This is auto generated Django code for session usage.
 class DjangoSession(models.Model):
     session_key = models.CharField(primary_key=True, max_length=40)
     session_data = models.TextField()
@@ -136,6 +150,7 @@ class DjangoSession(models.Model):
         db_table = 'django_session'
 
 
+# This is auto generated Django code for authentication.
 class SocialAuthAssociation(models.Model):
     server_url = models.CharField(max_length=255)
     handle = models.CharField(max_length=255)
@@ -150,6 +165,7 @@ class SocialAuthAssociation(models.Model):
         unique_together = (('server_url', 'handle'),)
 
 
+# This is auto generated Django code for authentication.
 class SocialAuthCode(models.Model):
     email = models.CharField(max_length=254)
     code = models.CharField(max_length=32)
@@ -162,6 +178,7 @@ class SocialAuthCode(models.Model):
         unique_together = (('email', 'code'),)
 
 
+# This is auto generated Django code for authentication.
 class SocialAuthNonce(models.Model):
     server_url = models.CharField(max_length=255)
     timestamp = models.IntegerField()
@@ -173,6 +190,7 @@ class SocialAuthNonce(models.Model):
         unique_together = (('server_url', 'timestamp', 'salt'),)
 
 
+# This is auto generated Django code for authentication.
 class SocialAuthPartial(models.Model):
     token = models.CharField(max_length=32)
     next_step = models.SmallIntegerField()
@@ -185,6 +203,7 @@ class SocialAuthPartial(models.Model):
         db_table = 'social_auth_partial'
 
 
+# This is auto generated Django code for authentication.
 class SocialAuthUsersocialauth(models.Model):
     provider = models.CharField(max_length=32)
     uid = models.CharField(max_length=255)
@@ -199,26 +218,7 @@ class SocialAuthUsersocialauth(models.Model):
         unique_together = (('provider', 'uid'),)
 
 
-# class Users(models.Model):
-#     id = models.IntegerField(db_column='ID', primary_key=True)  # Field name made lowercase.
-#     username = models.CharField(max_length=255)
-
-#     class Meta:
-#         managed = False
-#         db_table = 'users'
-
-
-# class UsersProfile(models.Model):
-#     id = models.BigAutoField(primary_key=True)
-#     avatar = models.CharField(max_length=100)
-#     serialnumber = models.CharField(db_column='serialNumber', max_length=50)  # Field name made lowercase.
-#     user = models.OneToOneField(AuthUser, models.DO_NOTHING)
-
-#     class Meta:
-#         managed = True
-#         db_table = 'users_profile'
-
-
+# This class is used for the Azure database environment.
 class WimhElectricity(models.Model):
     # id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
     tijdstip = models.DateTimeField()

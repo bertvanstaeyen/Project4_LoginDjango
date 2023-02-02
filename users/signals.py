@@ -5,13 +5,14 @@ from django.dispatch import receiver
 from .models import Profile
 
 
+# This is where we get a signal if a profile is created.
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
 
 
+# This is where we get a signal if a profile is saved.
 @receiver(post_save, sender=User)
 def save_profile(sender, instance, **kwargs):
     instance.profile.save()
-
