@@ -28,7 +28,6 @@ def homeDay(request):
     else:
         return redirect(to='/serialNumbers/')
 
-
 # home page with graphs of this week
 # if user has no serial number -> redirect to add serial number
 @login_required
@@ -41,7 +40,6 @@ def homeWeek(request):
     else:
         return redirect(to='/serialNumbers/')
 
-
 # home page with graphs of this month
 # if user has no serial number -> redirect to add serial number
 @login_required
@@ -53,7 +51,6 @@ def homeMonth(request):
         return render(request, 'users/home-month.html', {'username': user.username})
     else:
         return redirect(to='/serialNumbers/')
-
 
 # page to crud serial number
 @login_required
@@ -89,9 +86,12 @@ def serialNumber(request):
         else:
             for error in list(form.errors.values()):
                 messages.error(request, error)
+    # elif request.method == 'DELETE':
+    #     serialNumberId = deleteSerialNumberForm(data=request.DELETE)
+    #     SerialNumber.objects.filter(id=serialNumberId).delete()
 
     return render(request, 'users/crud-serial-number.html', context)
-
+    
 # update for the name of the meter
 def updateMeterName(request, id):
     serial = SerialNumber.objects.filter(id=id).first()
@@ -108,7 +108,6 @@ def updateMeterName(request, id):
 # exlpains the app and how to install the device to read the data
 def help(request):
     return render(request, 'users/help.html')
-
 
 # view to register user
 class RegisterView(View):
@@ -162,7 +161,6 @@ class CustomLoginView(LoginView):
 
         # else browser session will be as long as the session cookie time "SESSION_COOKIE_AGE" defined in settings.py
         return super(CustomLoginView, self).form_valid(form)
-
 
 # view to change password
 @login_required

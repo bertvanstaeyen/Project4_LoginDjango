@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 from django.shortcuts import redirect
 
+# This is where the different routes and urls are handled so you get to the right page.
 urlpatterns = [
     path('', lambda request: redirect('/day/')),
     path('day/', views.homeDay, name='users-home-day'),
