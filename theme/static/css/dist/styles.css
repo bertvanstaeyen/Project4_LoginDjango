@@ -804,6 +804,10 @@ select{
   z-index: 10;
 }
 
+.col-span-1{
+  grid-column: span 1 / span 1;
+}
+
 .m-8{
   margin: 2rem;
 }
@@ -1052,6 +1056,14 @@ select{
   height: 5rem;
 }
 
+.h-80{
+  height: 20rem;
+}
+
+.h-60{
+  height: 15rem;
+}
+
 .w-11\/12{
   width: 91.666667%;
 }
@@ -1107,10 +1119,6 @@ select{
 
 .flex-shrink-0{
   flex-shrink: 0;
-}
-
-.table-auto{
-  table-layout: auto;
 }
 
 .border-collapse{
@@ -1223,32 +1231,17 @@ select{
   border-width: 1px;
 }
 
-.border-0{
-  border-width: 0px;
-}
-
 .border-2{
   border-width: 2px;
+}
+
+.border-0{
+  border-width: 0px;
 }
 
 .border-gray-300{
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
-}
-
-.border-primary-light{
-  --tw-border-opacity: 1;
-  border-color: rgb(56 176 181 / var(--tw-border-opacity));
-}
-
-.border-red-500{
-  --tw-border-opacity: 1;
-  border-color: rgb(239 68 68 / var(--tw-border-opacity));
-}
-
-.border-primary-normal{
-  --tw-border-opacity: 1;
-  border-color: rgb(27 127 131 / var(--tw-border-opacity));
 }
 
 .bg-gray-50{
@@ -1281,14 +1274,14 @@ select{
   background-color: rgb(220 252 231 / var(--tw-bg-opacity));
 }
 
-.bg-primary-light{
-  --tw-bg-opacity: 1;
-  background-color: rgb(56 176 181 / var(--tw-bg-opacity));
-}
-
 .bg-gray-100{
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+}
+
+.bg-primary-light{
+  --tw-bg-opacity: 1;
+  background-color: rgb(56 176 181 / var(--tw-bg-opacity));
 }
 
 .bg-darker-800{
@@ -1463,14 +1456,14 @@ select{
   color: rgb(56 176 181 / var(--tw-text-opacity));
 }
 
-.text-red-500{
-  --tw-text-opacity: 1;
-  color: rgb(239 68 68 / var(--tw-text-opacity));
-}
-
 .text-gray-400{
   --tw-text-opacity: 1;
   color: rgb(156 163 175 / var(--tw-text-opacity));
+}
+
+.text-red-500{
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
 
 .text-gray-200{
@@ -1649,6 +1642,10 @@ select{
     grid-column: span 2 / span 2;
   }
 
+  .lg\:col-span-4{
+    grid-column: span 4 / span 4;
+  }
+
   .lg\:block{
     display: block;
   }
@@ -1673,8 +1670,20 @@ select{
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .lg\:grid-cols-4{
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .lg\:grid-cols-1{
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
   .lg\:grid-cols-3{
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .lg\:grid-cols-6{
+    grid-template-columns: repeat(6, minmax(0, 1fr));
   }
 
   .lg\:gap-10{

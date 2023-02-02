@@ -133,23 +133,22 @@ login().then(() => {
 
 		</div>	
 	</div>
-	<div class="flex-container">	
-		<div style="width: 15%;">
+	<div class="grid grid-cols-1 lg:grid-cols-6">	
+		<div class="col-span-1 h-80">
             <div style="height: 75%; width: auto;" id="ALL04" class="qvobject"></div>
             <div style="height: 25%; width: auto;" id="ALL05" class="qvobject"></div>
         </div>
 
-		<div style="width: 70%;" id="DAY03" class="qvobject"></div>
-		<div style="width: 15%;">
-			<div style="height: 55%; width: auto;" id="ALL02" class="qvobject"></div>
-			<div style="height: 55%; width: auto;" id="ALL03" class="qvobject"></div>
+		<div id="DAY03" class="qvobject col-span-1 lg:col-span-4"></div>
+		<div class="col-span-1 grid grid-cols-2 lg:grid-cols-1">
+			<div style="height: 100%; min-height: 200px;" id="ALL02" class="qvobject"></div>
+			<div style="height: 100%; min-height: 200px;" id="ALL03" class="qvobject"></div>
 		</div>
-		
 	</div>
 
-	<div class="flex-container">		
-		<div style="width: 50%;" id="DAY01" class="qvobject"></div>
-		<div style="width: 50%;" id="DAY02" class="qvobject"></div>
+	<div class="grid grid-cols-1 lg:grid-cols-2">		
+		<div id="DAY01" class="qvobject h-fit"></div>
+		<div id="DAY02" class="qvobject h-fit"></div>
 	</div>
 
 <!-- Create an HTML element to render the Qlik Sense application -->
