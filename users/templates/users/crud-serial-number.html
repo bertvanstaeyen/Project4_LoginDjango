@@ -208,17 +208,57 @@
     <h1 class="text-primary-normal text-center mt-10 mb-6 text-2xl">Meters</h1>
     <hr >
     <div class="mt-12 w-11/12 md:w-8/12 lg:w-6/12 mx-auto" style="margin-bottom: 320px;">
-        {% for number in serial %}
-        <div class="flex flex-nowrap justify-between p-2 bg-gray-100 rounded-lg border-2" style="margin-bottom: 8px">
-            <p>{{ number.name | default:'Meter' }} : <span class="text-gray-400">{{ number.serialNumber }}</span></p>
-            <div>
-                <i class="fas fa-edit text-gray-500 h-fit hover:cursor-pointer editmeter mr-2"
-                    data-number="{{ number.id }}"></i>
-                <i class="fas fa-times text-red-500 h-fit hover:cursor-pointer deletemeter"
-                    data-number="{{ number.id }}"></i>
-            </div>
+
+
+
+        <div class="relative overflow-x-auto">
+            <table class="w-full text-sm text-left text-gray-500">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            Name
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Serial Number
+                        </th>
+                        <th scope="col" class="px-6 py-3 w-12">
+                            Edit/Delete
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for number in serial %}
+                    <tr class="bg-white border-b ">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                            {{ number.name | default:'Meter' }}
+                        </th>
+                        <td class="px-6 py-4">
+                            {{ number.serialNumber }}
+                        </td>
+                        <td class="px-6 py-4 w-fit">
+                            <div class="w-fit mx-auto">
+                                <i class="fas fa-edit text-gray-500 h-fit hover:cursor-pointer editmeter mr-2"
+                                    data-number="{{ number.id }}"></i>
+                                <i class="fas fa-times text-red-500 h-fit hover:cursor-pointer deletemeter"
+                                    data-number="{{ number.id }}"></i>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
-        {% endfor %}
     </div>
 {% endblock content %}
 
+<!-- {% for number in serial %}
+<div class="flex flex-nowrap justify-between p-2 bg-gray-100 rounded-lg border-2" style="margin-bottom: 8px">
+    <p>{{ number.name | default:'Meter' }} : <span class="text-gray-400">{{ number.serialNumber }}</span></p>
+    <div>
+        <i class="fas fa-edit text-gray-500 h-fit hover:cursor-pointer editmeter mr-2"
+            data-number="{{ number.id }}"></i>
+        <i class="fas fa-times text-red-500 h-fit hover:cursor-pointer deletemeter"
+            data-number="{{ number.id }}"></i>
+    </div>
+</div>
+{% endfor %} -->
