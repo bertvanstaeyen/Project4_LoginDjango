@@ -88,7 +88,6 @@ class SerialNumberForm(forms.ModelForm):
         model = SerialNumber
         fields = ["serialNumber", "name"]
 
-
 # This class is used to log in to the application
 class LoginForm(AuthenticationForm):
     username = forms.CharField(max_length=100,
@@ -140,3 +139,16 @@ class UpdateUserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'email']
+
+class UpdateMeterNameForm(forms.ModelForm):
+    name = forms.CharField(max_length=50,
+                           required=True,
+                           widget=forms.TextInput(attrs={'placeholder': 'Meter name',
+                                                         'class': 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-normal focus:border-primary-normal block w-full p-2.5',
+                                                         'id': 'serialNumber',
+                                                         }))
+
+    class Meta:
+        model = SerialNumber
+        fields = ['name']
+

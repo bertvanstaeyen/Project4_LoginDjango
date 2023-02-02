@@ -51,7 +51,7 @@
     <h3 class="text-primary-normal font-semibold text-xl text-center mt-24">Help Page</h3>
     <div class="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-10 mt-16">
         <div class="effectStatic p-8">
-            <h3 class="font-bold text-sm text-center">Waarom moet ik mijn seriële nummer opgeven?</h3>
+            <h3 class="font-bold text-sm text-center">Why do I need to give up my serial number?</h3>
             <hr class="mx-12 mt-6 mb-12 bg-primary-light border-0 h-px">
             <div class="w-fit mx-auto mb-8">
                 <svg width="223" height="104" viewBox="0 0 223 75" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -62,18 +62,18 @@
                     
             </div>
                 
-            <p>Om je te <span class="text-primary-normal">registreren</span> hebben we enkele gegevens nodig van jou:</p>
+            <p>To <span class="text-primary-normal">sign up</span> we need some information from you:</p>
             <ul class="list-disc ml-8 mt-2 mb-4">
-                <li>Voornaam, Achternaam</li>
+                <li>Firstname, Lastname</li>
                 <li>Email</li>
-                <li>Gebruikersnaam</li>
-                <li>Seriële nummer van de meter</li>
+                <li>Username (used to log in)</li>
+                <li>Serial number from digital meter</li>
             </ul>
-            <p class="my-6">We gebruiken jouw <span class="text-primary-normal">seriële nummer</span> om zo de juiste data in de grafieken te krijgen.</p>
-            <p class="mb-4">Als je seriële nummer later zou veranderen (door bv. verhuis). Kan je deze later <span class="text-primary-normal">altijd aanpassen</span> en zullen de grafieken aangepast worden naar jouw nieuwe digitale meter.</p>
+            <p class="my-6">We use your <span class="text-primary-normal">serial number</span> do make sure you get the right data.</p>
+            <p class="mb-4">If you were to move out, you can always change your serial number.</p>
         </div>
         <div class="effectStatic p-8">
-            <h3 class="font-bold text-sm text-center">Wat kan ik met de applicatie?</h3>
+            <h3 class="font-bold text-sm text-center">What can I do with this application</h3>
             <hr class="mx-12 mt-6 mb-12 bg-primary-light border-0 h-px">
             <div class="w-fit mx-auto mb-8">
                 <svg width="142" height="104" viewBox="0 0 142 104" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -87,10 +87,10 @@
                     
             </div>
                 
-            <p>Door onze applicatie te gebruiken kan je op een ordelijke manier kijken hoeveel elektriciteit je verbruikt en aanmaakt.</p>
+            <p>By using our application you can have a clear overview of your electricity usage!</p>
         </div>
         <div class="effectStatic p-8">
-            <h3 class="font-bold text-sm text-center">Waar vind ik mijn seriële nummer?</h3>
+            <h3 class="font-bold text-sm text-center">Where can i find my serial number</h3>
             <hr class="mx-12 mt-6 mb-12 bg-primary-light border-0 h-px">
             <div class="w-fit mx-auto mb-8">
                 <svg width="149" height="104" viewBox="0 0 149 92" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -100,8 +100,38 @@
                     </svg>
                     
             </div>
-            <p>De seriële nummer kan je vinden op de voorkant van je digitale meter. </p>
+            <p>The serial number can be found on the front side of your digital meter. </p>
             <img src="{% static 'digitale_meter.jpg'%}" alt="digitale meter" class="mx-auto mt-12 rounded-xl brightness-125">
+        </div>
+        <div class="effectStatic p-8">
+            <h3 class="font-bold text-sm text-center">How do I connect the device to my meter?</h3>
+            <hr class="mx-12 mt-6 mb-12 bg-primary-light border-0 h-px">
+            <div class="w-fit mx-auto mb-8">
+                <svg width="149" height="104" viewBox="0 0 149 92" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0.135132" width="85.7295" height="51.108" rx="24.7297" fill="#38B0B5"/>
+                    <rect x="75.9729" y="57.7026" width="72.5404" height="23.081" rx="11.5405" fill="#D5AF76"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M80.9188 91.4704C80.2615 91.5656 79.5681 91.4355 78.963 91.0522C68.4979 84.4243 59.5527 72.8999 53.2524 61.5104C46.9897 50.1888 43 38.377 43 30.9123V28.8611L63.4845 21.7361L78.7952 10.4545C79.4307 9.98619 80.1947 9.81708 80.9188 9.92163C81.6429 9.81708 82.4069 9.98619 83.0424 10.4545L98.3532 21.7361L118.838 28.8611V30.9123C118.838 38.377 114.848 50.1888 108.585 61.5104C102.285 72.8999 93.3398 84.4243 82.8747 91.0522C82.2695 91.4355 81.5762 91.5656 80.9188 91.4704ZM80.9188 16.0572L66.2046 26.8993L48.8798 32.9253C49.5094 39.1465 52.8316 48.8288 58.3016 58.7173C64.1197 69.2351 72.0554 79.4137 80.9188 85.4347C89.7822 79.4137 97.718 69.2351 103.536 58.7173C109.006 48.8288 112.328 39.1465 112.958 32.9253L95.633 26.8993L80.9188 16.0572Z" fill="black"/>
+                    </svg>
+                    
+            </div>
+            <p>To start reading data you need to connect the device to the P1 port on your digital meter</p>
+            <img src="{% static 'p1.jpg'%}" alt="digitale meter" class="mx-auto mt-12 rounded-xl brightness-125">
+        </div>
+        <div class="effectStatic p-8">
+            <h3 class="font-bold text-sm text-center">How does the home page work?</h3>
+            <hr class="mx-12 mt-6 mb-12 bg-primary-light border-0 h-px">
+            <div class="w-fit mx-auto mb-8">
+                <svg width="183" height="114" viewBox="0 0 183 114" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="71.6102" y="47.1416" width="111.39" height="66.5014" rx="24.938" fill="#38B0B5"/>
+                    <rect x="0.00415039" y="3.68835" width="88.1143" height="49.876" rx="24.938" fill="#D5AF76"/>
+                    <path d="M112.615 48.3656C113.999 48.3656 113.297 70.0897 112.867 80.7947C112.736 84.0581 110.048 86.6167 106.782 86.6167H89.6648C86.2847 86.6167 83.5446 83.8766 83.5446 80.4965V72.3873C83.5446 69.2607 81.01 66.7261 77.8835 66.7261V66.7261C74.7569 66.7261 72.2223 69.2607 72.2223 72.3873V80.4965C72.2223 83.8766 69.4822 86.6167 66.1021 86.6167H63.9701C60.7078 86.6167 58.021 84.0583 57.8871 80.7988C57.4568 70.323 56.7694 49.2832 58.1459 48.3656M112.615 48.3656H58.1459M112.615 48.3656L91.3027 23.5007C88.9496 20.7554 84.742 20.6377 82.2391 23.2471L58.1459 48.3656" stroke="black" stroke-width="4.89614"/>
+                    </svg>
+                    
+                    
+                    
+            </div>
+            <p>On the top left you will see all your meters. Select one of them to get the graphs of that meter.</p>
+            <p>If you want to switch you first need to remove the selection and then you can select your next meter!</p>
         </div>
     </div>
 </div>

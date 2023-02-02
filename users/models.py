@@ -249,4 +249,4 @@ class WimhElectricity(models.Model):
         db_table = 'wimh_electricity'
 
     def __str__(self):
-        return self.id
+        return self.serialmeter
